@@ -8,6 +8,7 @@ import Contato from "./routes/Contato/index.tsx"
 import Pesquisa from "./routes/Pesquisa/index.tsx"
 import Sobre from "./routes/Sobre/index.tsx"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import "./global.css"
 
 const router = createBrowserRouter([
   {path:"/", element:<App/>, errorElement:<Error/> , children:[
