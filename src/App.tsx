@@ -7,7 +7,9 @@ export default function App(){
   return(
     <>
         <Cabecalho/>
-        <Outlet/>
+        <div className="pt-20">
+          <Outlet/>
+        </div>
         <Rodape/>
     </>
   );
