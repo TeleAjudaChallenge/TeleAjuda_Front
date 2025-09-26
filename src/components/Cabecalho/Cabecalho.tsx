@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 export default function Cabecalho(){
     return(
-        <header className="bg-primary text-white p-4 flex justify-between items-center">
+        <header>
             <Link to={"/"}>
-                <img src={logo} alt="Logo da TeleAjuda IMREA" className="h-12" />
+                <img src={logo} alt="Logo da TeleAjuda IMREA" /> 
             </Link>
             <Menu/>
         </header>
