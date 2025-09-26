@@ -7,12 +7,26 @@ export default function Home(){
     
     return(
         <main>
-        <section>
-            <h1>Bem Vindo(a) ao TeleAjuda IMREA</h1>
-            <Link to={"/contato"}>Entre em Contato</Link>
-            <img src={banner1} alt="Imagem de médico sorrindo"></img>
+        {/* Seção Principal (Hero) */}
+        <section 
+            className="h-[60vh] bg-cover bg-center flex items-center p-8 rounded-lg" 
+            style={{ backgroundImage: `url(${banner1})` }}
+        >
+            <div className="bg-black/30 p-8 rounded-lg">
+                <h1 className="text-5xl font-bold text-white mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.7)' }}>
+                    Bem Vindo(a) ao TeleAjuda IMREA
+                </h1>
+                <Link 
+                    to={"/faq"} 
+                    className="inline-block text-white font-bold py-3 px-6 rounded-lg transition-transform hover:scale-105"
+                    style={{ backgroundColor: 'var(--color-primary)' }}
+                >
+                    Perguntas Frequentes
+                </Link>
+            </div>
         </section>
 
+        {/* Seções Adicionais (ainda não estilizadas) */}
         <section>
             <div>
                 <h2>Precisa de Ajuda?</h2>
