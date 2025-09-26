@@ -1,56 +1,67 @@
 @import "tailwindcss";
 
-@theme {
-
+:root{
+    scroll-behavior: smooth;
+    /* Nossas cores personalizadas agora vivem aqui */
     --color-primary: #d90032;
     --color-button: #ffb336;
 }
 
-/* Estilos Globais da Aplicação */
 body {
-  @apply bg-gray-100 text-gray-800; /* Fundo cinza claro e texto escuro */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    @apply bg-gray-100 text-gray-800;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-main {
-  @apply container mx-auto p-8;
-  min-height: calc(100vh - 160px); 
-}
+@layer components{
+    .container{
+        @apply flex flex-col min-h-screen;
+    }
 
-h1 {
-  @apply text-4xl font-bold mb-6;
-  color: var(--color-primary); /* Usa a cor primária definida no @theme */
-}
+    .header-app {
+        /* Estilos do nosso cabeçalho que antes estavam no componente */
+        @apply bg-gray-100 p-6 flex justify-between items-center shadow-lg sticky top-0 z-50;
+    }
 
-h2 {
-  @apply text-2xl font-semibold mb-4;
-  color: var(--color-primary);
-}
+    .main-content{
+        @apply flex-1; /* Garante que o conteúdo principal ocupe o espaço disponível */
+    }
 
-section {
-  @apply mb-12;
-}
+    .footer-app{
+        /* Estilos do nosso rodapé */
+        @apply text-white text-center p-4 mt-8;
+        background-color: var(--color-primary);
+    }
 
-a {
-  color: var(--color-primary);
-  @apply hover:opacity-80 transition-opacity duration-300;
-}
+    /* Estilos globais para a tipografia dentro do main */
+    .main-content h1 {
+        @apply text-4xl font-bold mb-6;
+        color: var(--color-primary);
+    }
+    .main-content h2 {
+        @apply text-2xl font-semibold mb-4;
+        color: var(--color-primary);
+    }
+    .main-content a {
+        color: var(--color-primary);
+        @apply hover:opacity-80 transition-opacity;
+    }
 
-/* Estilos para botões e inputs no tema claro */
-button, input[type="submit"] {
-  background-color: var(--color-button); /* Usa a cor de botão personalizada (amarelo) */
-  @apply text-white font-bold py-2 px-4 rounded-lg hover:opacity-90 transition-opacity duration-300;
-}
+    /* Estilos para formulários (podemos criar uma classe específica como .form-default) */
+    .form-default {
+        @apply flex flex-col gap-4 max-w-lg mx-auto my-8 p-6 bg-white rounded-lg shadow-md;
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea,
-select {
-  @apply bg-white border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2;
-  color: #000;
-  /* Define a cor do anel de foco para a cor do botão */
-  --tw-ring-color: var(--color-button);
+        & label {
+            @apply font-semibold;
+        }
+
+        & input, & textarea, & select {
+            @apply bg-white border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2;
+            --tw-ring-color: var(--color-button);
+        }
+
+        & button {
+            background-color: var(--color-button);
+            @apply text-white font-bold py-2 px-4 rounded-lg hover:opacity-90;
+        }
+    }
 }
