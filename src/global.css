@@ -5,3 +5,35 @@
     --color-primary: #d90032;
     --color-button: #ffb336;
 }
+
+/* Estilos Globais da Aplicação */
+body {
+  @apply bg-gray-100 text-gray-800; /* Fundo cinza claro e texto escuro */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  @apply container mx-auto p-8;
+  min-height: calc(100vh - 160px); 
+}
+
+h1 {
+  @apply text-4xl font-bold mb-6;
+  color: var(--color-primary); /* Usa a cor primária definida no @theme */
+}
+
+h2 {
+  @apply text-2xl font-semibold mb-4;
+  color: var(--color-primary);
+}
+
+section {
+  @apply mb-12;
+}
+
+a {
+  color: var(--color-primary);
+  @apply hover:opacity-80 transition-opacity duration-300;
+}
