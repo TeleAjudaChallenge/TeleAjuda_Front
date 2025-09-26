@@ -37,6 +37,15 @@ export default function Sobre(){
                     {/* <a href="https://github.com/Juliacsou" target="_blank"><img class="icone" src="./img/icons8-github-logo-50.png" alt="GitHub"></a>
                     <a href="https://www.linkedin.com/in/julia-de-altino-540261258/" target="_blank"><img class="icone" src="./img/icons8-linkedin-48.png" alt="LinkedIn"></a> */}
                 </div>
+
+                <div>
+                    {/* <img class="foto-perfil" src="./ide Paulomg/julia.jpeg" alt="Foto de Julia Correa e Souza Altino"> */}
+                    <p><strong>Nicholas Camillo Canadas de Paulo</strong></p>
+                    <p>RM: 561262</p>
+                    <p>Turma: 1TDSPO</p>
+                    {/* <a href="https://github.com/Juliacsou" target="_blank"><img class="icone" src="./img/icons8-github-logo-50.png" alt="GitHub"></a>
+                    <a href="https://www.linkedin.com/in/julia-de-altino-540261258/" target="_blank"><img class="icone" src="./img/icons8-linkedin-48.png" alt="LinkedIn"></a> */}
+                </div>
             </section>
 
              <section>
