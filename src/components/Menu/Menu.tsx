@@ -3,9 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function Menu(){
 
     const getLinkClass = ({ isActive } : { isActive: boolean }) => {
-    
-        const baseClasses = "font-semibold px-4 rounded-full transition-all duration-300";
-        
+        const baseClasses = "font-semibold px-6 text-lg rounded-full transition-all duration-300";
         const layoutClasses = "h-full flex items-center";
 
         if (isActive) {
@@ -17,7 +15,7 @@ export default function Menu(){
 
     return(
         <nav>
-            <ul className="flex items-stretch bg-white/50 backdrop-blur-sm border border-gray-900/10 rounded-full py-1.5">
+            <ul className="flex items-stretch bg-white/50 backdrop-blur-sm border border-gray-900/10 rounded-full py-2">
                 <li><NavLink to={"/"} className={getLinkClass}>Home</NavLink></li>
                 <li><NavLink to={"/chamados"} className={getLinkClass}>Chamados</NavLink></li>
                 <li><NavLink to={"/contato"} className={getLinkClass}>Contato</NavLink></li>
