@@ -1,5 +1,5 @@
 import Menu from "../Menu/Menu";
-import logo from '/src/assets/img/logo.png';
+import logo from '/src/assets/img/LogoTeleAjuda.png';
 import { Link } from "react-router-dom";
 
 export default function Cabecalho(){
