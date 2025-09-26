@@ -37,3 +37,20 @@ a {
   color: var(--color-primary);
   @apply hover:opacity-80 transition-opacity duration-300;
 }
+
+/* Estilos para botões e inputs no tema claro */
+button, input[type="submit"] {
+  background-color: var(--color-button); /* Usa a cor de botão personalizada (amarelo) */
+  @apply text-white font-bold py-2 px-4 rounded-lg hover:opacity-90 transition-opacity duration-300;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  @apply bg-white border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2;
+  color: #000;
+  /* Define a cor do anel de foco para a cor do botão */
+  --tw-ring-color: var(--color-button);
+}
