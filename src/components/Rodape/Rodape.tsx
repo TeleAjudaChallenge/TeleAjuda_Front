@@ -1,6 +1,9 @@
 export default function Rodape(){
     return(
-        <footer className="bg-gray-800 text-white p-4 text-center mt-8">
+        <footer 
+            className="text-white text-center p-4 mt-8"
+            style={{ backgroundColor: 'var(--color-primary)' }}
+        >
             <p>&copy; 2025 TeleAjuda IMREA. Todos os direitos reservados</p>
         </footer>
     )
