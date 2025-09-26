@@ -7,6 +7,7 @@ import Chamados from "./routes/Chamados/index.tsx"
 import Contato from "./routes/Contato/index.tsx"
 import Pesquisa from "./routes/Pesquisa/index.tsx"
 import Sobre from "./routes/Sobre/index.tsx"
+import Faq from "./routes/Faq/index.tsx"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import "./global.css"
 
@@ -16,7 +17,8 @@ const router = createBrowserRouter([
     {path:"/chamados",element:<Chamados/>},
     {path:"/Contato",element:<Contato/>},
     {path:"/Pesquisa", element:<Pesquisa/>},
-    {path:"/Sobre", element:<Sobre/>}
+    {path:"/Sobre", element:<Sobre/>},
+    {path:"/faq",element:<Faq/>}
   ]}
 ]);
 
