@@ -34,8 +34,8 @@ export default function Menu(){
 
             <ul className="hidden lg:flex items-stretch bg-white/50 backdrop-blur-sm border border-gray-900/10 rounded-full lg:py-3 xl:py-6">
                 <li><NavLink to={"/"} className={getDesktopLinkClass}>Home</NavLink></li>
-                <li><NavLink to={"/chamados"} className={getDesktopLinkClass}>Chamados</NavLink></li>
                 <li><NavLink to={"/faq"} className={getDesktopLinkClass}>FAQ</NavLink></li>
+                <li><NavLink to={"/chamados"} className={getDesktopLinkClass}>Chamados</NavLink></li>
                 <li><NavLink to={"/contato"} className={getDesktopLinkClass}>Contato</NavLink></li>
                 <li><NavLink to={"/pesquisa"} className={getDesktopLinkClass}>Pesquisa</NavLink></li>
                 <li><NavLink to={"/sobre"} className={getDesktopLinkClass}>Sobre</NavLink></li>
@@ -44,8 +44,8 @@ export default function Menu(){
             {isOpen && (
                 <ul className="flex flex-col items-center space-y-4 bg-gray-100 shadow-md absolute left-0 top-full w-full p-6 lg:hidden">
                     <li><NavLink to={"/"} onClick={closeMenu} className={mobileLinkClass}>Home</NavLink></li>
-                    <li><NavLink to={"/chamados"} onClick={closeMenu} className={mobileLinkClass}>Chamados</NavLink></li>
                     <li><NavLink to={"/faq"} onClick={closeMenu} className={mobileLinkClass}>FAQ</NavLink></li>
+                    <li><NavLink to={"/chamados"} onClick={closeMenu} className={mobileLinkClass}>Chamados</NavLink></li>
                     <li><NavLink to={"/contato"} onClick={closeMenu} className={mobileLinkClass}>Contato</NavLink></li>
                     <li><NavLink to={"/pesquisa"} onClick={closeMenu} className={mobileLinkClass}>Pesquisa</NavLink></li>
                     <li><NavLink to={"/sobre"} onClick={closeMenu} className={mobileLinkClass}>Sobre</NavLink></li>

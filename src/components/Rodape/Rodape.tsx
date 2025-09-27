@@ -4,7 +4,7 @@ export default function Rodape(){
             className="text-white text-center p-4 mt-8"
             style={{ backgroundColor: 'var(--color-primary)' }}
         >
-            <p>&copy; 2025 TeleAjuda IMREA. Todos os direitos reservados</p>
+            <p>&copy; 2025 TeleAjuda. Todos os direitos reservados</p>
         </footer>
     )
 }
