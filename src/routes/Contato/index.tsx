@@ -1,49 +1,79 @@
 import { useEffect, useState } from "react";
-import CardFilial from "../../components/Cards/cardsFilial"
-import { listaFilial } from "../../data/listaFilial"
+import CardFilial from "../../components/Cards/cardsFilial";
+import { listaFilial } from "../../data/listaFilial";
 import type { TipoFilial } from "../../types/tipoFilial";
 
 export default function Contato(){
-    const [filial, setFilial] = useState<TipoFilial[]>([]);
-    const [filialSelecionada, setFilialSelecionada] = useState<number | null>(null);
+  const [filial, setFilial] = useState<TipoFilial[]>([]);
+  const [filialSelecionada, setFilialSelecionada] = useState<number | null>(null);
 
-    useEffect(() => {
-        setFilial(listaFilial);
-        }, []);
+  useEffect(() => {
+    setFilial(listaFilial);
+  }, []);
 
-    
-    return(
-        <main>
-            <h1>CONTATO</h1>
-        <section>
-            <div>
-                {/* <img src="./img/icons/tel.png" alt="icone telefone"> */}
-                <p>(11)1234-56789</p>
-                <a href="tel:(11)1234-56789">Ligue Já</a>
-            </div>
-            <div>
-                {/* <img src="./img/icons/email.png" alt="icone email"> */}
-                <p>suporte@teleajuda.com.br</p>
-                <a href="mailto:suporte@teleajuda.com.br">Envie um Email</a>
-            </div>
-        </section>
-        <section>
-            <div>
-            <h2>Nossas Unidades</h2>
-                <select id="unidade-select" name="tipo" required onChange={(e) => setFilialSelecionada(Number(e.target.value))}
->                   <option value="">Selecione uma unidade</option>
-                    <option value="1">Vila Mariana</option>
-                    <option value="2">Umarizal</option>
-                    <option value="3">Lapa</option>
-                    <option value="4">Clínicas</option>
-                    <option value="5">Morumbi</option>
-                </select>
+  return (
+    <main className="container mx-auto px-6 lg:px-24 py-10 space-y-10">
+      <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[var(--color-primary)]">
+        CONTATO
+      </h1>
 
-            </div>
-            <div style={{display:"flex",flexWrap:"wrap",width:"100vw",height:"100vh", flexDirection:"row"}}>
-                {filialSelecionada && filial.filter((f) => f.id === filialSelecionada).map((f) => <CardFilial key={f.id} filial={f} />)}
-            </div>
-        </section>
-        </main>
-    )
+      {/* Blocos de contato */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+          {/* <img src="./img/icons/tel.png" alt="icone telefone"> */}
+          <p className="text-sm text-gray-500">Telefone</p>
+          <p className="text-xl font-semibold mt-1">(11)1234-56789</p>
+          <a
+            href="tel:(11)1234-56789"
+            className="inline-block mt-3 px-4 py-2 rounded-lg text-white font-semibold bg-[var(--color-primary)] hover:brightness-110 transition"
+          >
+            Ligue Já
+          </a>
+        </div>
+
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+          {/* <img src="./img/icons/email.png" alt="icone email"> */}
+          <p className="text-sm text-gray-500">E-mail</p>
+          <p className="text-xl font-semibold mt-1 break-all">suporte@teleajuda.com.br</p>
+          <a
+            href="mailto:suporte@teleajuda.com.br"
+            className="inline-block mt-3 px-4 py-2 rounded-lg font-semibold bg-[var(--color-button)] text-black shadow hover:scale-[1.02] transition"
+          >
+            Envie um Email
+          </a>
+        </div>
+      </section>
+
+      {/* Unidades */}
+      <section className="space-y-4">
+        <div>
+          <h2 className="text-2xl md:text-3xl font-bold">Nossas Unidades</h2>
+        </div>
+
+        <div className="max-w-sm">
+          <select
+            id="unidade-select"
+            name="tipo"
+            required
+            onChange={(e) => setFilialSelecionada(Number(e.target.value))}
+            className="w-full rounded-lg border-gray-300 px-4 py-2 focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)]"
+          >
+            <option value="">Selecione uma unidade</option>
+            <option value="1">Vila Mariana</option>
+            <option value="2">Umarizal</option>
+            <option value="3">Lapa</option>
+            <option value="4">Clínicas</option>
+            <option value="5">Morumbi</option>
+          </select>
+        </div>
+
+        <div className="flex flex-wrap gap-4 w-full">
+          {filialSelecionada &&
+            filial
+              .filter((f) => f.id === filialSelecionada)
+              .map((f) => <CardFilial key={f.id} filial={f} />)}
+        </div>
+      </section>
+    </main>
+  );
 }
