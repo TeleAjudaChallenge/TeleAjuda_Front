@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MdOutlineChevronRight } from 'react-icons/md';
+import { MdOutlineChevronRight, MdHelpOutline } from 'react-icons/md';
 
 export default function Faq(){
     const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -40,46 +40,58 @@ export default function Faq(){
     };
 
     return(
-        <main>
-            {/* O container do título agora usa a paleta de cores do site */}
-            <div className="text-center bg-red-50 py-16">
+        <>
+            <div className="text-center p-8 md:p-12">
                 <h1 
-                    className="text-4xl font-bold mb-4"
+                    className="text-5xl md:text-6xl font-bold" 
                     style={{ color: 'var(--color-primary)' }}
                 >
                     Central de Ajuda
                 </h1>
-                <p className="text-lg text-red-900/80 max-w-3xl mx-auto">
-                    Encontre respostas para as perguntas mais comuns sobre a preparação para sua teleconsulta.
-                </p>
             </div>
 
-            <div className="max-w-3xl mx-auto my-8 space-y-4">
-                {faqData.map((item, index) => (
-                    <div key={index} className="border-b border-gray-200 py-4 overflow-hidden">
-                        <button 
-                            onClick={() => handleToggle(index)} 
-                            className="w-full flex justify-between items-center text-left"
-                        >
-                            <h3 className="font-semibold text-lg text-gray-800">{item.question}</h3>
-                            <MdOutlineChevronRight 
-                                className={`transform transition-transform duration-300 ${openIndex === index ? 'rotate-90' : ''}`}
-                                size={24}
-                                style={{ color: 'var(--color-primary)' }}
-                            />
-                        </button>
-                        <div 
-                            className={`transition-all duration-500 ease-in-out grid ${openIndex === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
-                        >
-                            <div className="overflow-hidden">
-                                <p className="text-gray-600 pt-4">
-                                    {item.answer}
-                                </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-12 px-4">
+                
+                <div 
+                    className="flex flex-col items-center justify-center text-center p-8 rounded-2xl h-full"
+                    style={{ backgroundColor: 'rgba(217, 0, 50, 0.05)' }}
+                >
+                    <MdHelpOutline size={60} style={{ color: 'var(--color-primary)' }}/>
+                    <h2 className="text-4xl font-bold mt-4" style={{ color: 'var(--color-primary)' }}>
+                        Dúvidas Comuns
+                    </h2>
+                    <p className="text-lg text-gray-600 mt-2 max-w-sm">
+                        Encontre respostas para as perguntas mais comuns sobre a preparação para sua teleconsulta.
+                    </p>
+                </div>
+
+                <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl">
+                    {faqData.map((item, index) => (
+                        <div key={index} className="border-b border-gray-200 py-4 overflow-hidden">
+                            <button 
+                                onClick={() => handleToggle(index)} 
+                                className="w-full flex justify-between items-center text-left"
+                            >
+                                <h3 className="font-semibold text-lg text-gray-800">{item.question}</h3>
+                                <MdOutlineChevronRight 
+                                    className={`transform transition-transform duration-300 ${openIndex === index ? 'rotate-90' : ''}`}
+                                    size={24}
+                                    style={{ color: 'var(--color-primary)' }}
+                                />
+                            </button>
+                            <div 
+                                className={`transition-all duration-500 ease-in-out grid ${openIndex === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+                            >
+                                <div className="overflow-hidden">
+                                    <p className="text-gray-600 pt-4">
+                                        {item.answer}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </main>
+        </>
     )
 }
