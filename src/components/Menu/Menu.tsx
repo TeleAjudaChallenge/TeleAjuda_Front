@@ -38,11 +38,11 @@ export default function Menu(){
 
             <ul className="hidden lg:flex items-stretch bg-white/50 backdrop-blur-sm border border-gray-900/10 rounded-full lg:py-3 xl:py-6">
                 <li><NavLink to={"/"} className={getDesktopLinkClass}>Home</NavLink></li>
+                <li><NavLink to={"/faq"} className={getDesktopLinkClass}>FAQ</NavLink></li>
                 <li><NavLink to={"/chamados"} className={getDesktopLinkClass}>Chamados</NavLink></li>
                 <li><NavLink to={"/contato"} className={getDesktopLinkClass}>Contato</NavLink></li>
                 <li><NavLink to={"/pesquisa"} className={getDesktopLinkClass}>Pesquisa</NavLink></li>
-                <li><NavLink to={"/sobre"} className={getDesktopLinkClass}>Sobre</NavLink></li>
-                <li><NavLink to={"/faq"} className={getDesktopLinkClass}>FAQ</NavLink></li>
+                <li><NavLink to={"/integrantes"} className={getDesktopLinkClass}>Integrantes</NavLink></li>
             </ul>
             
             <div className={`fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 ${isOpen ? 'translate-x-0' : 'translate-x-full'} lg:hidden`}>
@@ -54,11 +54,11 @@ export default function Menu(){
                 </div>
                 <ul className="flex flex-col p-4 space-y-2">
                     <li><NavLink to={"/"} onClick={closeMenu} className={getMobileLinkClass}>Home</NavLink></li>
+                    <li><NavLink to={"/faq"} onClick={closeMenu} className={getMobileLinkClass}>FAQ</NavLink></li>
                     <li><NavLink to={"/chamados"} onClick={closeMenu} className={getMobileLinkClass}>Chamados</NavLink></li>
                     <li><NavLink to={"/contato"} onClick={closeMenu} className={getMobileLinkClass}>Contato</NavLink></li>
                     <li><NavLink to={"/pesquisa"} onClick={closeMenu} className={getMobileLinkClass}>Pesquisa</NavLink></li>
-                    <li><NavLink to={"/sobre"} onClick={closeMenu} className={getMobileLinkClass}>Sobre</NavLink></li>
-                    <li><NavLink to={"/faq"} onClick={closeMenu} className={getMobileLinkClass}>FAQ</NavLink></li>
+                    <li><NavLink to={"/integrantes"} onClick={closeMenu} className={getMobileLinkClass}>Integrantes</NavLink></li>
                 </ul>
             </div>
             
