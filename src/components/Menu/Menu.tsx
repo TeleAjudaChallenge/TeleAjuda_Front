@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from 'react-icons/fa';
-import logo from '/src/assets/img/logo.png'; 
+import logo from '/src/assets/img/LogoTeleAjuda.png';
 
 export default function Menu(){
     const [isOpen, setIsOpen] = useState(false);
@@ -41,11 +41,11 @@ export default function Menu(){
             <ul className="hidden lg:flex items-stretch bg-white/50 backdrop-blur-sm border border-gray-900/10 rounded-full lg:py-3 xl:py-6">
                 {/* ... links desktop ... */}
                 <li><NavLink to={"/"} className={getDesktopLinkClass}>Home</NavLink></li>
+                <li><NavLink to={"/faq"} className={getDesktopLinkClass}>FAQ</NavLink></li>
                 <li><NavLink to={"/chamados"} className={getDesktopLinkClass}>Chamados</NavLink></li>
                 <li><NavLink to={"/contato"} className={getDesktopLinkClass}>Contato</NavLink></li>
                 <li><NavLink to={"/pesquisa"} className={getDesktopLinkClass}>Pesquisa</NavLink></li>
                 <li><NavLink to={"/sobre"} className={getDesktopLinkClass}>Sobre</NavLink></li>
-                <li><NavLink to={"/faq"} className={getDesktopLinkClass}>FAQ</NavLink></li>
             </ul>
             
             {/* Painel Lateral Mobile */}

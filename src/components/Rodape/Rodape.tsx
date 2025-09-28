@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '/src/assets/img/logo.png'; 
+import logo from '/src/assets/img/LogoTeleAjuda.png';
 import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 
 export default function Rodape(){
@@ -41,7 +41,7 @@ export default function Rodape(){
                 </div>
             </div>
             <div className="border-t border-gray-200 mt-8 pt-6 text-center text-gray-500">
-                <p>&copy; 2025 TeleAjuda IMREA. Todos os direitos reservados.</p>
+                <p>&copy; 2025 TeleAjuda. Todos os direitos reservados.</p>
             </div>
         </footer>
     )
