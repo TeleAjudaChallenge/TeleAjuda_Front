@@ -27,9 +27,8 @@ body {
     }
 
     .footer-app{
-        /* Estilos do nosso rodapé */
-        @apply text-white text-center p-4 mt-8;
-        background-color: var(--color-primary);
+    /* Estilos atualizados para o novo rodapé */
+    @apply bg-white text-left p-8 md:p-16 mt-12;
     }
 
     /* Estilos globais para a tipografia dentro do main */

@@ -7,7 +7,7 @@ export default function Home(){
     
     return(
         <>
-            {/* Seção Principal (Hero) - Responsiva */}
+            {/* Seção Principal (Hero) */}
             <section 
                 className="bg-cover bg-right lg:bg-center flex flex-col justify-center h-[80vh] lg:h-[70vh] 
                            px-6 text-center lg:text-left lg:items-start lg:px-24" 
@@ -28,10 +28,9 @@ export default function Home(){
                 </Link>
             </section>
 
-            {/* O resto do conteúdo continua dentro do <main> */}
             <main>
-                {/* Seção "Precisa de Ajuda?" - Estilizada */}
-                <section className="bg-white shadow-xl rounded-2xl p-8 md:p-12">
+                {/* Seção "Precisa de Ajuda?" */}
+                <section className="bg-white shadow-2xl rounded-2xl p-8 md:p-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                         {/* Coluna de Texto */}
                         <div>
@@ -49,33 +48,55 @@ export default function Home(){
                                 Clique Aqui
                             </Link>
                         </div>
-                        {/* Coluna de Imagem com a classe 'max-w-sm' removida */}
+                        {/* Coluna de Imagem */}
                         <div className="flex justify-center">
                             <img src={banner3} alt="Imagem de ajuda" className="rounded-2xl w-full"/>
                         </div>
                     </div>
                 </section>
 
-                {/* Seções restantes, ainda não estilizadas */}
-                <section>
-                    <div>
-                        <h2>Quem somos?</h2>
-                        <p>Descubra quem somos, o que fazemos </p><p>e como podemos ajudar na sua recuperação.</p>
-                        <Link to={"/sobre"}>Clique Aqui</Link>
-                    </div>
-                    <div>
-                        <img src={imgContato} alt="Imagem de contato"/>
+                {/* Seção "Quem somos?" */}
+                <section className="bg-white shadow-2xl rounded-2xl p-8 md:p-12 mt-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        {/* Coluna de Imagem */}
+                        <div className="flex justify-center md:order-first">
+                            <img src={imgContato} alt="Imagem de contato" className="rounded-2xl w-full"/>
+                        </div>
+                        {/* Coluna de Texto */}
+                        <div>
+                            <h2 className="text-5xl font-bold" style={{ color: 'var(--color-primary)' }}>
+                                Quem somos?
+                            </h2>
+                            <p className="mt-4 text-xl text-gray-600">
+                                Descubra quem somos, o que fazemos e como podemos ajudar na sua recuperação.
+                            </p>
+                            <Link 
+                                to={"/sobre"}
+                                className="inline-block mt-8 text-black text-lg font-bold py-4 px-10 rounded-full transition-transform hover:scale-105 shadow-lg"
+                                style={{ backgroundColor: 'var(--color-button)' }}
+                            >
+                                Clique Aqui
+                            </Link>
+                        </div>
                     </div>
                 </section>
 
-                <section>
-                    <div>
-                        <h2>Entre em contato com a nossa equipe</h2>
-                        <p>Estamos prontos para oferecer o suporte que você precisa.</p>
-                    </div>
-                    <div>
-                        <Link to={"/contato"}>Clique Aqui</Link>
-                    </div>   
+                {/* Seção "Entre em contato" - Novo Estilo */}
+                <section 
+                    className="text-white rounded-2xl p-8 md:p-12 mt-12 text-center"
+                    style={{ backgroundColor: 'var(--color-primary)' }}
+                >
+                    <h2 className="text-5xl font-bold text-white">Entre em contato com a nossa equipe</h2>
+                    <p className="mt-4 text-xl text-gray-200 max-w-2xl mx-auto">
+                        Estamos prontos para oferecer o suporte que você precisa.
+                    </p>
+                    <Link 
+                        to={"/contato"}
+                        className="inline-block mt-8 bg-white text-lg font-bold py-4 px-10 rounded-full transition-transform hover:scale-105 shadow-lg"
+                        style={{ color: 'var(--color-primary)' }}
+                    >
+                        Clique Aqui
+                    </Link>
                 </section>
             </main>
         </>
