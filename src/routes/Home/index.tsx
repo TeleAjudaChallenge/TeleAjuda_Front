@@ -7,7 +7,6 @@ export default function Home(){
     
     return(
         <>
-            {/* Seção Principal (Hero) */}
             <section 
                 className="bg-cover bg-right lg:bg-center flex flex-col justify-center h-[80vh] lg:h-[70vh] 
                            px-6 text-center lg:text-left lg:items-start lg:px-24" 
@@ -29,11 +28,9 @@ export default function Home(){
             </section>
 
             <main>
-                {/* Seção "Precisa de Ajuda?" */}
                 <section className="bg-white shadow-2xl rounded-2xl p-8 md:p-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                        {/* Coluna de Texto */}
-                        <div>
+                        <div className="flex flex-col items-center text-center md:items-start md:text-left">
                             <h2 className="text-5xl font-bold" style={{ color: 'var(--color-primary)' }}>
                                 Precisa de Ajuda?
                             </h2>
@@ -48,22 +45,18 @@ export default function Home(){
                                 Clique Aqui
                             </Link>
                         </div>
-                        {/* Coluna de Imagem */}
-                        <div className="flex justify-center">
+                        <div className="hidden md:flex justify-center">
                             <img src={banner3} alt="Imagem de ajuda" className="rounded-2xl w-full"/>
                         </div>
                     </div>
                 </section>
 
-                {/* Seção "Quem somos?" */}
                 <section className="bg-white shadow-2xl rounded-2xl p-8 md:p-12 mt-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                        {/* Coluna de Imagem */}
-                        <div className="flex justify-center md:order-first">
+                        <div className="hidden md:flex justify-center md:order-first">
                             <img src={imgContato} alt="Imagem de contato" className="rounded-2xl w-full"/>
                         </div>
-                        {/* Coluna de Texto */}
-                        <div>
+                        <div className="flex flex-col items-center text-center md:items-start md:text-left">
                             <h2 className="text-5xl font-bold" style={{ color: 'var(--color-primary)' }}>
                                 Quem somos?
                             </h2>
@@ -81,7 +74,6 @@ export default function Home(){
                     </div>
                 </section>
 
-                {/* Seção "Entre em contato" - Novo Estilo */}
                 <section 
                     className="text-white rounded-2xl p-8 md:p-12 mt-12 text-center"
                     style={{ backgroundColor: 'var(--color-primary)' }}

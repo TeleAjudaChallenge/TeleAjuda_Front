@@ -2,7 +2,6 @@
 
 :root{
     scroll-behavior: smooth;
-    /* Nossas cores personalizadas agora vivem aqui */
     --color-primary: #d90032;
     --color-button: #ffb336;
 }
@@ -18,20 +17,17 @@ body {
     }
 
     .header-app {
-        /* Estilos do nosso cabeçalho que antes estavam no componente */
         @apply bg-gray-100 p-6 flex justify-between items-center shadow-lg sticky top-0 z-50;
     }
 
     .main-content{
-        @apply flex-1; /* Garante que o conteúdo principal ocupe o espaço disponível */
+        @apply flex-1;
     }
 
     .footer-app{
-    /* Estilos atualizados para o novo rodapé */
     @apply bg-white text-left p-8 md:p-16 mt-12;
     }
 
-    /* Estilos globais para a tipografia dentro do main */
     .main-content h1 {
         @apply text-4xl font-bold mb-6;
         color: var(--color-primary);
@@ -45,7 +41,6 @@ body {
         @apply hover:opacity-80 transition-opacity;
     }
 
-    /* Estilos para formulários (podemos criar uma classe específica como .form-default) */
     .form-default {
         @apply flex flex-col gap-4 max-w-lg mx-auto my-8 p-6 bg-white rounded-lg shadow-md;
 

@@ -18,14 +18,12 @@ export default function Chamados(){
 
                 {/* Coluna Direita - Formulário */}
                 <div className="p-8 md:p-12">
-                    {/* 1. Título "Abra um novo Ticket" agora está colorido */}
                     <h2 
                         className="text-3xl font-bold mb-6"
                         style={{ color: 'var(--color-primary)' }}
                     >
                         Abra um novo Ticket
                     </h2>
-                    {/* 2. Aplicamos a classe .form-default que estiliza todos os campos e o botão */}
                     <form id="formularioTicket" className="form-default">
                         <div>
                             <label htmlFor="nome" className="font-semibold text-gray-700">Nome</label>

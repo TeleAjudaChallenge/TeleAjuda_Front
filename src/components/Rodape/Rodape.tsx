@@ -6,7 +6,6 @@ export default function Rodape(){
     return(
         <footer className="footer-app">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                {/* Coluna 1: Logo e Descrição */}
                 <div className="md:col-span-1">
                     <img src={logo} alt="Logo TeleAjuda" className="h-20 mb-4"/>
                     <p className="text-gray-600">
@@ -14,7 +13,6 @@ export default function Rodape(){
                     </p>
                 </div>
 
-                {/* Coluna 2: Navegação */}
                 <div>
                     <h3 className="font-bold text-lg mb-4 text-gray-800">Navegação</h3>
                     <ul className="space-y-2">
@@ -25,7 +23,6 @@ export default function Rodape(){
                     </ul>
                 </div>
 
-                {/* Coluna 3: Contato */}
                 <div>
                     <h3 className="font-bold text-lg mb-4 text-gray-800">Contato</h3>
                     <ul className="space-y-2">
