@@ -16,7 +16,7 @@ export default function Home(){
                     className="font-bold mb-6 text-4xl md:text-6xl lg:text-7xl" 
                     style={{ color: 'var(--color-primary)', textShadow: '1px 1px 3px rgba(0,0,0,0.3)' }}
                 >
-                    Bem Vindo(a) ao <br/> TeleAjuda IMREA
+                    Bem Vindo(a) ao <br/> TeleAjuda
                 </h1>
                 <Link 
                     to={"/faq"} 
