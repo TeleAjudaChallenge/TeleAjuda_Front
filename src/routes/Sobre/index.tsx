@@ -2,7 +2,6 @@
 export default function Sobre() {
   return (
     <main className="container mx-auto px-6 lg:px-24 py-10 space-y-14">
-      {/* Cabeçalho */}
       <header className="max-w-4xl">
         <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[var(--color-primary)]">
           Sobre o TeleAjuda
@@ -13,7 +12,6 @@ export default function Sobre() {
         </p>
       </header>
 
-      {/* O DESAFIO ATUAL */}
       <section className="max-w-5xl space-y-6">
         <h2 className="text-2xl md:text-3xl font-bold">O desafio atual</h2>
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -33,7 +31,6 @@ export default function Sobre() {
         </ul>
       </section>
 
-      {/* NOSSA RESPOSTA: TELEAJUDA */}
       <section className="max-w-5xl space-y-4">
         <h2 className="text-2xl md:text-3xl font-bold">
           Nossa resposta: <span className="text-[var(--color-primary)]">TeleAjuda</span>
@@ -42,7 +39,6 @@ export default function Sobre() {
           Plataforma simples, acessível e integrada ao Portal do Paciente HC.
         </p>
 
-        {/* A SOLUÇÃO: recursos */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
             <h3 className="font-semibold">Assistente Virtual</h3>
@@ -70,13 +66,12 @@ export default function Sobre() {
           </div>
         </div>
 
-        {/* Slogan */}
+ 
         <div className="mt-4 rounded-2xl border border-indigo-200 bg-indigo-50 text-indigo-900 p-5">
           <strong className="block">TeleAjuda — sua consulta começa em 5 minutos.</strong>
         </div>
       </section>
 
-      {/* POR QUE FAZ DIFERENÇA */}
       <section className="max-w-5xl space-y-6">
         <h2 className="text-2xl md:text-3xl font-bold">Por que o TeleAjuda faz diferença?</h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -95,7 +90,6 @@ export default function Sobre() {
         </ul>
       </section>
 
-      {/* EVOLUÇÃO DA SOLUÇÃO */}
       <section className="max-w-5xl space-y-4">
         <h2 className="text-2xl md:text-3xl font-bold">Evolução da solução</h2>
         <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -114,7 +108,7 @@ export default function Sobre() {
         </ol>
       </section>
 
-      {/* Fechamento */}
+    
       <section className="max-w-4xl">
         <p className="text-gray-700 text-lg leading-relaxed">
           O TeleAjuda reforça a inclusão, o acolhimento e a eficiência nos atendimentos — conectando tecnologia ao cuidado.
