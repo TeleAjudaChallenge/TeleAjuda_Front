@@ -43,6 +43,7 @@ export default function Menu(){
                 <li><NavLink to={"/contato"} className={getDesktopLinkClass}>Contato</NavLink></li>
                 <li><NavLink to={"/pesquisa"} className={getDesktopLinkClass}>Pesquisa</NavLink></li>
                 <li><NavLink to={"/integrantes"} className={getDesktopLinkClass}>Integrantes</NavLink></li>
+                <li><NavLink to={"/sobre"} className={getDesktopLinkClass}>Sobre</NavLink></li>
             </ul>
             
             <div className={`fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 ${isOpen ? 'translate-x-0' : 'translate-x-full'} lg:hidden`}>
@@ -59,6 +60,8 @@ export default function Menu(){
                     <li><NavLink to={"/contato"} onClick={closeMenu} className={getMobileLinkClass}>Contato</NavLink></li>
                     <li><NavLink to={"/pesquisa"} onClick={closeMenu} className={getMobileLinkClass}>Pesquisa</NavLink></li>
                     <li><NavLink to={"/integrantes"} onClick={closeMenu} className={getMobileLinkClass}>Integrantes</NavLink></li>
+                    <li><NavLink to={"/sobre"} className={getDesktopLinkClass}>Sobre</NavLink></li>
+
                 </ul>
             </div>
             
