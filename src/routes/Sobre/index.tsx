@@ -1,4 +1,4 @@
-import { FaLaptopMedical, FaLightbulb, FaHeartbeat, FaRocket, FaTasks, FaUserCheck } from 'react-icons/fa';
+import { FaLaptopMedical, FaLightbulb, FaHeartbeat, FaRocket, FaTasks, FaUserCheck, FaUniversalAccess, FaChartLine } from 'react-icons/fa';
 
 export default function Sobre() {
   return (
@@ -65,20 +65,20 @@ export default function Sobre() {
         <h2 className="text-3xl font-bold text-center">Por que o TeleAjuda faz diferença?</h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center gap-4">
-            <FaRocket size={24} className="text-[var(--color-primary)]" />
-            <p className="text-gray-800 text-lg">📉 Reduz faltas em consultas</p>
+            <FaChartLine size={24} className="text-[var(--color-primary)]" />
+            <p className="text-gray-800 text-lg">Reduz faltas em consultas</p>
           </li>
           <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center gap-4">
-            <FaRocket size={24} className="text-[var(--color-primary)]" />
-            <p className="text-gray-800 text-lg">♿ Promove acessibilidade digital</p>
-          </li>
-          <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center gap-4">
-            <FaHeartbeat size={24} className="text-[var(--color-primary)]" />
-            <p className="text-gray-800 text-lg">😊 Atendimento humanizado e acolhedor</p>
+            <FaUniversalAccess size={24} className="text-[var(--color-primary)]" />
+            <p className="text-gray-800 text-lg">Promove acessibilidade digital</p>
           </li>
           <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center gap-4">
             <FaHeartbeat size={24} className="text-[var(--color-primary)]" />
-            <p className="text-gray-800 text-lg">📈 Aumenta a eficiência do sistema de saúde</p>
+            <p className="text-gray-800 text-lg">Atendimento humanizado e acolhedor</p>
+          </li>
+          <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center gap-4">
+            <FaRocket size={24} className="text-[var(--color-primary)]" />
+            <p className="text-gray-800 text-lg">Aumenta a eficiência do sistema de saúde</p>
           </li>
         </ul>
       </section>
