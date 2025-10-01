@@ -13,18 +13,23 @@ type FormValues = {
 export default function Chamados(){
     const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
-    const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const onSubmit = (data: FormValues) => {
         console.log(data);
         alert(`Obrigado, ${data.nome}! Seu ticket foi enviado com sucesso.`);
     };
 
     return(
         <>
-            <div className="text-center p-8">
-                <h1 style={{ color: 'var(--color-primary)' }}>Abra um Ticket</h1>
+            <div className="text-center p-8 md:p-12">
+                <h1 
+                    className="text-5xl md:text-6xl font-bold" 
+                    style={{ color: 'var(--color-primary)' }}
+                >
+                    Abra um Ticket
+                </h1>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-12 px-4">
                 
                 <div 
                     className="flex flex-col items-center justify-center text-center p-8 rounded-2xl"
