@@ -3,7 +3,7 @@ import CardFilial from "../../components/Cards/cardsFilial";
 import { listaFilial } from "../../data/listaFilial";
 import type { TipoFilial } from "../../types/tipoFilial";
 
-export default function Contato(){
+export default function Contato() {
   const [filial, setFilial] = useState<TipoFilial[]>([]);
   const [filialSelecionada, setFilialSelecionada] = useState<number | null>(null);
 
@@ -13,14 +13,15 @@ export default function Contato(){
 
   return (
     <main className="container mx-auto px-6 lg:px-24 py-10 space-y-10">
-      <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[var(--color-primary)]">
-        CONTATO
-      </h1>
+      <div className="text-center">
+        <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[var(--color-primary)]">
+          CONTATO
+        </h1>
+      </div>
 
       {/* Blocos de contato */}
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          {/* <img src="./img/icons/tel.png" alt="icone telefone"> */}
           <p className="text-sm text-gray-500">Telefone</p>
           <p className="text-xl font-semibold mt-1">(11)1234-56789</p>
           <a
@@ -32,7 +33,6 @@ export default function Contato(){
         </div>
 
         <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          {/* <img src="./img/icons/email.png" alt="icone email"> */}
           <p className="text-sm text-gray-500">E-mail</p>
           <p className="text-xl font-semibold mt-1 break-all">suporte@teleajuda.com.br</p>
           <a
@@ -46,11 +46,11 @@ export default function Contato(){
 
       {/* Unidades */}
       <section className="space-y-4">
-        <div>
+        <div className="text-center">
           <h2 className="text-2xl md:text-3xl font-bold">Nossas Unidades</h2>
         </div>
 
-        <div className="max-w-sm">
+        <div className="max-w-sm mx-auto">
           <select
             id="unidade-select"
             name="tipo"
@@ -67,7 +67,7 @@ export default function Contato(){
           </select>
         </div>
 
-        <div className="flex flex-wrap gap-4 w-full">
+        <div className="flex flex-wrap gap-4 w-full justify-center">
           {filialSelecionada &&
             filial
               .filter((f) => f.id === filialSelecionada)
