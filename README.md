@@ -15,10 +15,6 @@
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
 </div>
 
-<p align="center">
-  <strong>Status do Projeto:</strong> Concluído ✔️
-</p>
-
 ---
 
 ### 📖 Tabela de Conteúdos
