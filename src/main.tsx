@@ -16,9 +16,10 @@ const router = createBrowserRouter([
   {path:"/", element:<App/>, errorElement:<Error/> , children:[
     {path:"/",element:<Home/>},
     {path:"/chamados",element:<Chamados/>},
-    {path:"/Contato",element:<Contato/>},
-    {path:"/Pesquisa", element:<Pesquisa/>},
-    {path:"/Integrantes", element:<Integrantes/>},
+    {path:"/contato",element:<Contato/>},
+    {path:"/contato/:filialId", element:<Contato/>},
+    {path:"/pesquisa", element:<Pesquisa/>},
+    {path:"/integrantes", element:<Integrantes/>},
     {path:"/faq",element:<Faq/>},
     {path:"/sobre",element:<Sobre/>}
   ]}
