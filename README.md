@@ -108,4 +108,4 @@ O projeto segue uma estrutura de pastas organizada para facilitar a manutenção
 ### 🔗 Links Importantes
 
 - [cite_start]**Repositório no GitHub:** `https://github.com/TeleAjudaChallenge/Front2.git`
-- [cite_start]**Vídeo de Apresentação (YouTube):** `[COLE AQUI O LINK DO SEU VÍDEO NO YOUTUBE]`
+- [cite_start]**Vídeo de Apresentação (YouTube):** `https://youtu.be/eh8yt8uiNm0`
