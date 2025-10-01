@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const ESCALA = Array.from({ length: 11 }, (_, i) => i); // 0..10
+
 function RatingGroup({ id, legend, value, onChange, required }) {
   const helpId = `${id}-help`;
 
@@ -21,25 +22,25 @@ function RatingGroup({ id, legend, value, onChange, required }) {
       >
         {ESCALA.map((n) => (
           <label key={n} className="group">
-        
             <input
               type="radio"
               name={id}
               value={n}
-              className="sr-only peer"
+              className="sr-only"
               checked={value === n}
               onChange={() => onChange(n)}
               required={required}
             />
        
             <span
-              className="
-                flex items-center justify-center h-10 rounded-lg border text-sm
-                border-gray-300 bg-white text-gray-700
-                peer-checked:text-white peer-checked:border-[var(--color-primary)]
-                peer-checked:bg-[var(--color-primary)]
-                hover:border-[var(--color-primary)]/60 transition
-              "
+              className={`
+                flex items-center justify-center h-10 rounded-lg border text-sm transition
+                ${
+                  value === n
+                    ? 'bg-[var(--color-primary)] border-[var(--color-primary)] text-white'
+                    : 'bg-white border-gray-300 text-gray-700 hover:border-[var(--color-primary)]/60'
+                }
+              `}
               title={`${legend}: ${n}`}
             >
               {n}
@@ -75,9 +76,7 @@ export default function Pesquisa() {
 
     try {
       setSending(true);
-
       await new Promise((r) => setTimeout(r, 900));
-
       setOkMsg("Avaliação enviada com sucesso. Obrigado pelo feedback!");
       setNotaApp(null);
       setNotaSite(null);
@@ -91,11 +90,11 @@ export default function Pesquisa() {
 
   return (
     <main className="container mx-auto px-6 lg:px-24 py-10">
-      <header className="max-w-4xl mx-auto mb-8">
-        <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[var(--color-primary)]">
+      <header className="max-w-4xl mx-auto mb-8 text-center">
+        <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight" style={{ color: 'var(--color-primary)' }}>
           Pesquisa de Satisfação
         </h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-600 mt-2 text-lg">
           Avalie sua experiência com o app, o site e o nosso suporte.
         </p>
       </header>
@@ -127,7 +126,6 @@ export default function Pesquisa() {
             required
           />
 
-        
           {okMsg && (
             <div className="rounded-xl border border-green-200 bg-green-50 text-green-800 px-4 py-3">
               {okMsg}
@@ -139,7 +137,6 @@ export default function Pesquisa() {
             </div>
           )}
 
-    
           <div className="flex items-center gap-3">
             <button
               id="botaoPesquisa"
@@ -155,7 +152,6 @@ export default function Pesquisa() {
               {sending ? "Enviando..." : "Enviar Avaliação"}
             </button>
 
-        
             <span className="text-sm text-gray-500">
               Selecione uma nota de 0 a 10 para cada item.
             </span>
