@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { FaHeadset } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 type FormValues = {
     nome: string;
@@ -11,11 +12,17 @@ type FormValues = {
 };
 
 export default function Chamados(){
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>();
+    const navigate = useNavigate();
 
     const onSubmit = (data: FormValues) => {
         console.log(data);
         alert(`Obrigado, ${data.nome}! Seu ticket foi enviado com sucesso.`);
+        reset();
+
+        setTimeout(() => {
+            navigate('/');
+        }, 1000);
     };
 
     return(
