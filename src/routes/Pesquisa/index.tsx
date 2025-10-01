@@ -1,9 +1,17 @@
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 const ESCALA = Array.from({ length: 11 }, (_, i) => i); // 0..10
 
-function RatingGroup({ id, legend, value, onChange, required }) {
+type FormValues = {
+  notaApp: string;
+  notaSite: string;
+  notaSuporte: string;
+};
+
+function RatingGroup({ id, legend, register, watch, errors }) {
   const helpId = `${id}-help`;
+  const currentValue = watch(id);
 
   return (
     <fieldset className="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 shadow-sm">
@@ -24,19 +32,15 @@ function RatingGroup({ id, legend, value, onChange, required }) {
           <label key={n} className="group">
             <input
               type="radio"
-              name={id}
               value={n}
               className="sr-only"
-              checked={value === n}
-              onChange={() => onChange(n)}
-              required={required}
+              {...register(id, { required: "Por favor, selecione uma nota." })}
             />
-       
             <span
               className={`
                 flex items-center justify-center h-10 rounded-lg border text-sm transition
                 ${
-                  value === n
+                  currentValue == n
                     ? 'bg-[var(--color-primary)] border-[var(--color-primary)] text-white'
                     : 'bg-white border-gray-300 text-gray-700 hover:border-[var(--color-primary)]/60'
                 }
@@ -48,45 +52,30 @@ function RatingGroup({ id, legend, value, onChange, required }) {
           </label>
         ))}
       </div>
+      {errors[id] && <p className="text-red-500 text-sm mt-2">{errors[id].message}</p>}
     </fieldset>
   );
 }
 
 export default function Pesquisa() {
-  const [notaApp, setNotaApp] = useState(null);
-  const [notaSite, setNotaSite] = useState(null);
-  const [notaSuporte, setNotaSuporte] = useState(null);
-
+  const { register, handleSubmit, watch, formState: { errors, isValid }, reset } = useForm<FormValues>({
+    mode: 'onChange' 
+  });
   const [sending, setSending] = useState(false);
   const [okMsg, setOkMsg] = useState("");
-  const [errMsg, setErrMsg] = useState("");
 
-  const tudoPreenchido =
-    notaApp !== null && notaSite !== null && notaSuporte !== null;
-
-  async function handleSubmit(e) {
-    e.preventDefault();
+  const onSubmit = async (data: FormValues) => {
     setOkMsg("");
-    setErrMsg("");
-
-    if (!tudoPreenchido) {
-      setErrMsg("Preencha todas as notas antes de enviar.");
-      return;
-    }
-
-    try {
-      setSending(true);
-      await new Promise((r) => setTimeout(r, 900));
-      setOkMsg("Avaliação enviada com sucesso. Obrigado pelo feedback!");
-      setNotaApp(null);
-      setNotaSite(null);
-      setNotaSuporte(null);
-    } catch (err) {
-      setErrMsg("Não foi possível enviar agora. Tente novamente em instantes.");
-    } finally {
-      setSending(false);
-    }
-  }
+    setSending(true);
+    
+    console.log("Dados da Pesquisa:", data);
+    
+    await new Promise((r) => setTimeout(r, 900));
+    
+    setOkMsg("Avaliação enviada com sucesso. Obrigado pelo feedback!");
+    reset();
+    setSending(false);
+  };
 
   return (
     <main className="container mx-auto px-6 lg:px-24 py-10">
@@ -101,29 +90,29 @@ export default function Pesquisa() {
 
       <section className="max-w-4xl mx-auto">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="space-y-6 bg-gray-50 rounded-2xl p-5 md:p-8 border border-gray-200"
         >
           <RatingGroup
             id="notaApp"
             legend="Nota para o Aplicativo"
-            value={notaApp}
-            onChange={setNotaApp}
-            required
+            register={register}
+            watch={watch}
+            errors={errors}
           />
           <RatingGroup
             id="notaSite"
             legend="Nota para o Site"
-            value={notaSite}
-            onChange={setNotaSite}
-            required
+            register={register}
+            watch={watch}
+            errors={errors}
           />
           <RatingGroup
             id="notaSuporte"
             legend="Nota para o Suporte"
-            value={notaSuporte}
-            onChange={setNotaSuporte}
-            required
+            register={register}
+            watch={watch}
+            errors={errors}
           />
 
           {okMsg && (
@@ -131,17 +120,11 @@ export default function Pesquisa() {
               {okMsg}
             </div>
           )}
-          {errMsg && (
-            <div className="rounded-xl border border-red-200 bg-red-50 text-red-800 px-4 py-3">
-              {errMsg}
-            </div>
-          )}
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 pt-4">
             <button
-              id="botaoPesquisa"
               type="submit"
-              disabled={!tudoPreenchido || sending}
+              disabled={!isValid || sending}
               className={`
                 inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold
                 text-white bg-[var(--color-primary)] shadow
@@ -151,10 +134,6 @@ export default function Pesquisa() {
             >
               {sending ? "Enviando..." : "Enviar Avaliação"}
             </button>
-
-            <span className="text-sm text-gray-500">
-              Selecione uma nota de 0 a 10 para cada item.
-            </span>
           </div>
         </form>
       </section>
