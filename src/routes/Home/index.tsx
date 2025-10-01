@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import banner1 from "/src/assets/img/banner1.png";
-import banner3 from "/src/assets/img/banner3.png";
+import banner1 from "/src/assets/img/bannerMedico.png";
+import banner3 from "/src/assets/img/bannerAjuda.png";
 import imgContato from "/src/assets/img/Contato.png";
 
 export default function Home(){
