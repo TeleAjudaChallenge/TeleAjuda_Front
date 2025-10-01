@@ -22,7 +22,7 @@ export default function Menu(){
         `h-full flex items-center ${desktopBaseLinkClass} ${isActive ? desktopActiveLinkClass : desktopInactiveLinkClass}`;
 
     // --- ESTILOS PARA MOBILE ---
-    const mobileBaseLinkClass = "w-full text-left p-4 rounded-md text-lg";
+    const mobileBaseLinkClass = "w-full text-left py-2 px-4 rounded-lg text-lg";
     const mobileActiveLinkClass = "bg-[color:var(--color-primary)] text-white";
     const mobileInactiveLinkClass = "text-gray-700 hover:bg-gray-100";
     const getMobileLinkClass = ({ isActive } : { isActive: boolean }) => 
@@ -60,8 +60,7 @@ export default function Menu(){
                     <li><NavLink to={"/contato"} onClick={closeMenu} className={getMobileLinkClass}>Contato</NavLink></li>
                     <li><NavLink to={"/pesquisa"} onClick={closeMenu} className={getMobileLinkClass}>Pesquisa</NavLink></li>
                     <li><NavLink to={"/integrantes"} onClick={closeMenu} className={getMobileLinkClass}>Integrantes</NavLink></li>
-                    <li><NavLink to={"/sobre"} className={getDesktopLinkClass}>Sobre</NavLink></li>
-
+                    <li><NavLink to={"/sobre"} onClick={closeMenu} className={getMobileLinkClass}>Sobre</NavLink></li>
                 </ul>
             </div>
             
