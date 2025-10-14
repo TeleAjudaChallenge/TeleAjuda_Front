@@ -9,6 +9,9 @@ import Pesquisa from "./routes/Pesquisa/index.tsx"
 import Integrantes from "./routes/Integrantes/index.tsx"
 import Faq from "./routes/Faq/index.tsx"
 import Sobre from "./routes/Sobre/index.tsx"
+import Cadastro from "./routes/Cadastro/index.tsx"
+import Login from "./routes/Login/index.tsx"
+import Perfil from "./routes/Perfil/index.tsx"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import "./global.css"
 
@@ -21,7 +24,10 @@ const router = createBrowserRouter([
     {path:"/pesquisa", element:<Pesquisa/>},
     {path:"/integrantes", element:<Integrantes/>},
     {path:"/faq",element:<Faq/>},
-    {path:"/sobre",element:<Sobre/>}
+    {path:"/sobre",element:<Sobre/>},
+    {path:"/cadastro",element:<Cadastro/>},
+    {path:"/login",element:<Login/>},
+    {path:"/perfil",element:<Perfil/>}
   ]}
 ]);
 
