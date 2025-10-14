@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import CardsFilial from "../../components/Cards/cardsFilial";
+import CardFilial from "../../components/Cards/CardFilial"; 
 import { listaFilial } from "../../data/listaFilial";
 import type { TipoFilial } from "../../types/tipoFilial";
 
@@ -86,7 +86,7 @@ export default function Contato() {
           {filialSelecionada &&
             filial
               .filter((f) => f.id === filialSelecionada)
-              .map((f) => <CardsFilial key={f.id} filial={f} />)}
+              .map((f) => <CardFilial key={f.id} filial={f} />)}
         </div>
       </section>
     </main>
