@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from 'react-icons/fa';
-import logo from '/src/assets/img/LogoTeleAjuda.png'; 
+import logo from '../../../public/LogoTeleAjuda.png'; 
 
 export default function Menu(){
     const [isOpen, setIsOpen] = useState(false);

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '/src/assets/img/LogoTeleAjuda.png';
+import logo from '../../../public/LogoTeleAjuda.png';
 import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 
 export default function Rodape(){
