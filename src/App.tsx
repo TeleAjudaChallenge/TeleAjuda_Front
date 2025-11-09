@@ -56,16 +56,85 @@ export default function App() {
         }
     }, [location.pathname]);
 
+    useEffect(() => {
+        const storedUser = localStorage.getItem('teleajuda_user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+            setIsAuthenticated(true);
+        }
+    }, []);
+
     const login = async (cpf: string, senha: string) => {
-        console.log("Login a ser implementado", cpf, senha);
-        return Promise.resolve();
+        const API_URL = "https://teleajuda.onrender.com";
+
+        try {
+            // --- TENTATIVA 1: LOGAR COMO PACIENTE ---
+            const validacaoPaciente = await fetch(`${API_URL}/paciente/validar/${cpf}/${senha}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (validacaoPaciente.ok) {
+                const dadosResponse = await fetch(`${API_URL}/paciente/cpf/${cpf}`, { method: 'GET', headers: { 'Content-Type': 'application/json' }});
+                if (!dadosResponse.ok) throw new Error('CPF validado (Paciente), mas não foi possível buscar os dados.');
+               
+                const dadosApi = await dadosResponse.json();
+                const userData: User = {
+                    id: dadosApi.id_paciente || dadosApi.id,
+                    nome: dadosApi.nm_paciente, email: dadosApi.mail_paciente,
+                    telefone: dadosApi.tel_paciente, cpf: dadosApi.cpf_paciente,
+                    rghc: dadosApi.rghc, dataNascimento: dadosApi.dt_nasc_paciente,
+                    perfil: "Paciente"
+                };
+               
+                setUser(userData);
+                setIsAuthenticated(true);
+                localStorage.setItem('teleajuda_user', JSON.stringify(userData));
+                navigate('/perfil');
+                return;
+            }
+
+            // --- TENTATIVA 2: LOGAR COMO FUNCIONÁRIO ---
+            const validacaoFuncionario = await fetch(`${API_URL}/funcionario/validar/${cpf}/${senha}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (validacaoFuncionario.ok) {
+                const dadosResponse = await fetch(`${API_URL}/funcionario/cpf/${cpf}`, { method: 'GET', headers: { 'Content-Type': 'application/json' }});
+                if (!dadosResponse.ok) throw new Error('CPF validado (Funcionário), mas não foi possível buscar os dados.');
+               
+                const dadosApi = await dadosResponse.json();
+                const userData: User = {
+                    id: 0,
+                    id_funcionario: dadosApi.id_funcionario || dadosApi.id,
+                    nome: dadosApi.nm_funcionario, email: dadosApi.mail_funcionario,
+                    cpf: dadosApi.cpf_funcionario, perfil: "Funcionario"
+                };
+               
+                setUser(userData);
+                setIsAuthenticated(true);
+                localStorage.setItem('teleajuda_user', JSON.stringify(userData));
+                navigate('/');
+                return;
+            }
+
+            throw new Error('CPF ou senha inválidos.');
+
+        } catch (error: any) {
+            console.error("Erro no processo de login:", error.message);
+            throw new Error(error.message || 'CPF ou senha inválidos.');
+        }
     };
    
     const logout = () => {
-        console.log("Logout a ser implementado");
+        setUser(null); setToken(null); setIsAuthenticated(false);
+        localStorage.removeItem('teleajuda_user');
+        navigate('/login');
     };
 
     const updateUserContext = (updatedUser: User) => {
+        // Lógica de update será implementada
         console.log("Update a ser implementado", updatedUser);
     };
 
