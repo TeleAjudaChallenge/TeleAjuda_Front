@@ -1,0 +1,49 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../App';
+
+export default function VerPesquisas() {
+    const { user } = useAuth();
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (!user) {
+            return; 
+        }
+        if (user.perfil !== "Funcionario") {
+            navigate('/perfil'); 
+            return;
+        }
+
+        // Lógica de fetch virá aqui
+        
+    }, [user, navigate]);
+
+    if (!user) {
+        return <main className="text-center p-10">Carregando permissões...</main>;
+    }
+
+    return (
+        <main className="container mx-auto px-6 lg:px-24 py-10">
+            <header className="max-w-4xl mx-auto mb-8 text-center">
+                <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight" style={{ color: 'var(--color-primary)' }}>
+                    Resultados da Pesquisa
+                </h1>
+                <p className="text-gray-600 mt-2 text-xl">
+                    Aqui estão as médias de satisfação dos pacientes.
+                </p>
+            </header>
+            
+            {isLoading && <p className="text-center text-gray-500">Carregando resultados...</p>}
+            {error && <div className="text-red-500 text-center p-4 bg-red-50 rounded-lg">{error}</div>}
+            
+            {!isLoading && !error && (
+                <>
+                    {/* Seções de Média e Tabela virão aqui */}
+                </>
+            )}
+        </main>
+    );
+}
