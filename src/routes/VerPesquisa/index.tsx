@@ -38,9 +38,9 @@ export default function VerPesquisas() {
         const fetchPesquisas = async () => {
             setIsLoading(true);
             try{
-                const response = await fetch ('${API_URL}${GET_ALL_PESQUISAS}', {
+                const response = await fetch (`${API_URL}${GET_ALL_PESQUISAS}`, {
                     method: 'GET',
-                    headers: {'Contest-Type':'application/jason'},
+                    headers: {'Content-Type':'application/json'},
                 });
                 if (!response.ok) {
                     throw new Error("Não foi possivel carregar os dados da pesquisa.");

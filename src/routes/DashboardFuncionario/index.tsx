@@ -91,35 +91,6 @@ export default function DashboardFuncionario() {
         console.log("BYPASS: Enviando resposta para API (simulado):", apiData);
         await new Promise(resolve => setTimeout(resolve, 700));
 
-        // ATENÇÃO: Descomente as linhas abaixo quando a API for consertada
-        /*
-        try {
-            const response = await fetch(`${API_URL}${RESPOND_TICKET}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(apiData),
-            });
-
-            if (!response.ok) { 
-                // O erro 405 acontece aqui
-                throw new Error("Não foi possível enviar a resposta. (Erro 405 - CORS)");
-            }
-
-            // Sucesso! Atualiza o ticket na lista (frontend)
-            setTickets(tickets.map(t => 
-                t.id_ticket === ticketSelecionado.id_ticket 
-                ? { ...t, resposta: data.resposta, status: "FECHADO" } 
-                : t
-            ));
-            fecharModal();
-        } catch (err: any) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
-        }
-        */
-
-        // --- CÓDIGO DO BYPASS (Apague quando a API funcionar) ---
         setTickets(tickets.map(t => 
             t.id_ticket === ticketSelecionado.id_ticket 
             ? { ...t, resposta: data.resposta, status: "FECHADO" } 
@@ -127,7 +98,6 @@ export default function DashboardFuncionario() {
         ));
         fecharModal();
         setIsLoading(false);
-        // --- FIM DO BYPASS ---
     };
     
     if (!user) {
