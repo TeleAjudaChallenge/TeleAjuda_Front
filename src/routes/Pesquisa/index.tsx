@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useAuth } from "../../App";
 
 const ESCALA = Array.from({ length: 11 }, (_, i) => i); // 0..10
 
@@ -76,6 +77,7 @@ export default function Pesquisa() {
     const [sending, setSending] = useState(false);
     const [okMsg, setOkMsg] = useState("");
     const [apiError, setApiError] = useState<string | null>(null);
+    const { user, isAuthenticated } = useAuth();
 
     const onSubmit = async (data: FormValues) => {
         setOkMsg("");
@@ -88,8 +90,12 @@ export default function Pesquisa() {
             nt_suporte: Number(data.notaSuporte),
         };
 
-        // Lógica de autenticação virá aqui
-
+        if (isAuthenticated && user && user.perfil === "Paciente" && user.cpf) {
+            apiData.paciente = {
+                cpf_paciente: user.cpf
+            };
+        }
+        
         try {
             const response = await fetch(${API_URL}${PESQUISA_ENDPOINT}, {
                 method: 'POST',
