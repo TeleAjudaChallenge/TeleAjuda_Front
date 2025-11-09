@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import logo from '/LogoTeleAjuda.png';
 
 export default function Error(){
+    const error = useRouteError() as any;
+    console.error(error);
+
     return(
         <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8 text-center">
             <img src={logo} alt="Logo TeleAjuda" className="h-40 mb-8" />
@@ -16,7 +19,9 @@ export default function Error(){
                 Desculpe, a página que você está procurando não existe.
             </p>
             
-            {/* O detalhe do erro virá aqui */}
+            <p className="text-gray-500 mt-6">
+                <i>{error.statusText || error.message}</i>
+            </p>
 
             <Link 
                 to="/"
