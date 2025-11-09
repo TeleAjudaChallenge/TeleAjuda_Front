@@ -9,7 +9,7 @@ type Ticket = {
     assunto: string;
     descricao: string;
     resposta: string | null;
-    status?: string;
+    status?: string; 
     paciente?: {
         cpf_paciente: string;
         nm_paciente?: string;
@@ -34,7 +34,7 @@ export default function DashboardFuncionario() {
 
     useEffect(() => {
         if (!user) {
-            return;
+            return; 
         }
         if (user.perfil !== "Funcionario") {
             navigate('/perfil');
@@ -61,7 +61,6 @@ export default function DashboardFuncionario() {
         };
         fetchTickets();
     }, [user, navigate, logout]);
- 
 
     const abrirModal = (ticket: Ticket) => {
         setTicketSelecionado(ticket);
@@ -76,10 +75,9 @@ export default function DashboardFuncionario() {
     const onReplySubmit = async (data: ReplyFormValues) => {
         if (!ticketSelecionado || !user || !user.cpf) {
             setError("Erro: Ticket ou funcionário não identificado.");
-            setIsLoading(false);
             return;
         }
-       
+        
         setIsLoading(true);
 
         const apiData = {
@@ -90,8 +88,11 @@ export default function DashboardFuncionario() {
             }
         };
 
-        console.log("Enviando resposta para API:", apiData);
+        console.log("BYPASS: Enviando resposta para API (simulado):", apiData);
+        await new Promise(resolve => setTimeout(resolve, 700));
 
+        // ATENÇÃO: Descomente as linhas abaixo quando a API for consertada
+        /*
         try {
             const response = await fetch(`${API_URL}${RESPOND_TICKET}`, {
                 method: 'PUT',
@@ -99,14 +100,15 @@ export default function DashboardFuncionario() {
                 body: JSON.stringify(apiData),
             });
 
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(errorText || `Erro ${response.status}: Não foi possível enviar a resposta.`);
+            if (!response.ok) { 
+                // O erro 405 acontece aqui
+                throw new Error("Não foi possível enviar a resposta. (Erro 405 - CORS)");
             }
 
-            setTickets(tickets.map(t =>
-                t.id_ticket === ticketSelecionado.id_ticket
-                ? { ...t, resposta: data.resposta, status: "FECHADO" }
+            // Sucesso! Atualiza o ticket na lista (frontend)
+            setTickets(tickets.map(t => 
+                t.id_ticket === ticketSelecionado.id_ticket 
+                ? { ...t, resposta: data.resposta, status: "FECHADO" } 
                 : t
             ));
             fecharModal();
@@ -115,12 +117,23 @@ export default function DashboardFuncionario() {
         } finally {
             setIsLoading(false);
         }
-    };
+        */
 
+        // --- CÓDIGO DO BYPASS (Apague quando a API funcionar) ---
+        setTickets(tickets.map(t => 
+            t.id_ticket === ticketSelecionado.id_ticket 
+            ? { ...t, resposta: data.resposta, status: "FECHADO" } 
+            : t
+        ));
+        fecharModal();
+        setIsLoading(false);
+        // --- FIM DO BYPASS ---
+    };
+    
     if (!user) {
         return <main className="text-center p-10">Carregando permissões...</main>
     }
-   
+    
     return (
         <>
             <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -133,11 +146,7 @@ export default function DashboardFuncionario() {
                     </p>
                 </header>
 
-                {error && (
-                    <div className="text-red-500 text-center p-4 bg-red-50 rounded-lg">
-                        <strong>Erro:</strong> {error}
-                    </div>
-                )}
+                {error && <div className="text-red-500 text-center p-4 bg-red-50 rounded-lg">{error}</div>}
 
                 <section className="max-w-5xl mx-auto space-y-4">
                     {isLoading && tickets.length === 0 && (
@@ -192,7 +201,7 @@ export default function DashboardFuncionario() {
                                 <FaTimes size={24} />
                             </button>
                         </div>
-                       
+                        
                         <div className="mb-4 space-y-1">
                             <p><strong>Assunto:</strong> {ticketSelecionado.assunto}</p>
                             <p><strong>Descrição:</strong> {ticketSelecionado.descricao}</p>
@@ -200,14 +209,14 @@ export default function DashboardFuncionario() {
 
                         <form onSubmit={handleSubmit(onReplySubmit)}>
                             <label htmlFor="resposta" className="block text-sm font-medium text-gray-700 mb-1">Sua Resposta:</label>
-                            <textarea
-                                id="resposta"
+                            <textarea 
+                                id="resposta" 
                                 rows={5}
                                 className="form-default w-full"
                                 {...register("resposta", { required: "A resposta é obrigatória" })}
                             ></textarea>
-                            <button
-                                type="submit"
+                            <button 
+                                type="submit" 
                                 disabled={isLoading}
                                 className="w-full mt-4 text-white font-bold py-3 px-4 rounded-lg transition shadow-lg disabled:opacity-50"
                                 style={{ backgroundColor: 'var(--color-primary)' }}
