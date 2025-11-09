@@ -21,8 +21,7 @@ export default function VerPesquisas() {
     const [pesquisas, setPesquisas] = useState<Pesquisa[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-    // Estados para as médias (ainda não usados)
+    
     const [avgApp, setAvgApp] = useState(0);
     const [avgSite, setAvgSite] = useState(0);
     const [avgSuporte, setAvgSuporte] = useState(0);
@@ -49,8 +48,16 @@ export default function VerPesquisas() {
                 const data: Pesquisa[] = await response.json();
                 setPesquisas(data);
 
-                // Cálculo de médias virá aqui
-                
+                if (data.length > 0) {
+                    const totalApp = data.reduce((sum, item) => sum + item.nt_app, 0);
+                    const totalSite = data.reduce((sum, item) => sum + item.nt_site, 0);
+                    const totalSuporte = data.reduce((sum, item) => sum + item.nt_suporte, 0);
+                    
+                    setAvgApp(totalApp / data.length);
+                    setAvgSite(totalSite / data.length);
+                    setAvgSuporte(totalSuporte / data.length);
+                }
+
             } catch (err: any) {
                 setError(err.message);
             } finally {
@@ -81,8 +88,27 @@ export default function VerPesquisas() {
             
             {!isLoading && !error && (
                 <>
-                    {/* Seção de Médias virá aqui */}
-                    
+                    <section className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
+                        <div className="bg-white p-6 rounded-2xl shadow-lg text-center">
+                            <h2 className="text-lg font-semibold text-gray-600">Média App</h2>
+                            <p className="text-5xl font-bold mt-2" style={{ color: 'var(--color-primary)' }}>
+                                {avgApp.toFixed(1)}
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-2xl shadow-lg text-center">
+                            <h2 className="text-lg font-semibold text-gray-600">Média Site</h2>
+                            <p className="text-5xl font-bold mt-2" style={{ color: 'var(--color-primary)' }}>
+                                {avgSite.toFixed(1)}
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-2xl shadow-lg text-center">
+                            <h2 className="text-lg font-semibold text-gray-600">Média Suporte</h2>
+                            <p className="text-5xl font-bold mt-2" style={{ color: 'var(--color-primary)' }}>
+                                {avgSuporte.toFixed(1)}
+                            </p>
+                        </div>
+                    </section>
+
                     <section className="max-w-5xl mx-auto">
                         <h2 className="text-2xl font-bold mb-4 text-center">Todas as Respostas ({pesquisas.length})</h2>
                         <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
