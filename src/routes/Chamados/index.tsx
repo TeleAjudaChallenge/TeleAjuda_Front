@@ -1,48 +1,81 @@
 import { useForm } from 'react-hook-form';
 import { FaHeadset } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useAuth } from '../../App';
 
 type FormValues = {
-    nome: string;
-    email: string;
-    telefone: string;
-    tipo: string;
-    titulo: string;
+    assunto: string;
     descricao: string;
 };
 
-export default function Chamados(){
+const API_URL = "https://teleajuda.onrender.com";
+const TICKET_ENDPOINT = "/ticket";
+
+export default function Chamados() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>();
     const navigate = useNavigate();
+    const { user } = useAuth();
 
-    const onSubmit = (data: FormValues) => {
-        console.log(data);
-        alert(`Obrigado, ${data.nome}! Seu ticket foi enviado com sucesso.`);
-        reset();
+    const [isLoading, setIsLoading] = useState(false);
+    const [apiError, setApiError] = useState<string | null>(null);
 
-        setTimeout(() => {
+    const onSubmit = async (data: FormValues) => {
+        setIsLoading(true);
+        setApiError(null);
+
+        if (!user || !user.cpf) {
+            setApiError("Você precisa estar logado para abrir um chamado.");
+            setIsLoading(false);
+            return;
+        }
+
+        const apiData = {
+            assunto: data.assunto,
+            descricao: data.descricao,
+            paciente: {
+                cpf_paciente: user.cpf
+            }
+        };
+
+        console.log("Enviando chamado para API:", apiData);
+
+        try {
+            const response = await fetch(`${API_URL}${TICKET_ENDPOINT}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(apiData)
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || "Não foi possível registrar o chamado.");
+            }
+
+            alert(`Obrigado! Seu ticket foi enviado com sucesso.`);
+            reset();
             navigate('/');
-        }, 1000);
+
+        } catch (error: any) {
+            console.error("Erro ao abrir chamado:", error);
+            setApiError(error.message);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    return(
+    return (
         <>
             <div className="text-center p-8 md:p-12">
-                <h1 
-                    className="text-5xl md:text-6xl font-bold" 
-                    style={{ color: 'var(--color-primary)' }}
-                >
-                    Abra um Ticket
-                </h1>
+                <h1 className="text-5xl md:text-6xl font-bold" style={{ color: 'var(--color-primary)' }}> Abra um Ticket </h1>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-12 px-4">
-                
-                <div 
-                    className="flex flex-col items-center justify-center text-center p-8 rounded-2xl"
-                    style={{ backgroundColor: 'rgba(217, 0, 50, 0.05)' }}
-                >
-                    <FaHeadset size={60} style={{ color: 'var(--color-primary)' }}/>
+
+                <div className="flex flex-col items-center justify-center text-center p-8 rounded-2xl" style={{ backgroundColor: 'rgba(217, 0, 50, 0.05)' }}>
+                    <FaHeadset size={60} style={{ color: 'var(--color-primary)' }} />
                     <h2 className="text-4xl font-bold mt-4" style={{ color: 'var(--color-primary)' }}>
                         Precisa de Ajuda?
                     </h2>
@@ -54,50 +87,27 @@ export default function Chamados(){
                 <div>
                     <form onSubmit={handleSubmit(onSubmit)} className="form-default">
                         <div>
-                            <label htmlFor="nome">Nome</label>
-                            <input type="text" id="nome" {...register("nome", { required: "O nome é obrigatório" })} />
-                            {errors.nome && <p className="text-red-500 text-sm mt-1">{errors.nome.message}</p>}
+                            <label htmlFor="assunto">Assunto (Título do Problema):</label>
+                            <input type="text" id="assunto" {...register("assunto", { required: "O assunto é obrigatório" })} />
+                            {errors.assunto && <p className="text-red-500 text-sm mt-1">{errors.assunto.message}</p>}
                         </div>
-                        
-                        <div>
-                            <label htmlFor="email">Email</label>
-                            <input type="email" id="email" {...register("email", { required: "O email é obrigatório", pattern: { value: /^\S+@\S+$/i, message: "Email inválido" } })} />
-                            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
-                        </div>
-                        
-                        <div>
-                            <label htmlFor="telefone">Telefone</label>
-                            <input type="tel" id="telefone" {...register("telefone", { required: "O telefone é obrigatório" })} />
-                            {errors.telefone && <p className="text-red-500 text-sm mt-1">{errors.telefone.message}</p>}
-                        </div>
-                        
-                        <div>
-                            <label htmlFor="tipo">Quem você é</label>
-                            <select id="tipo" {...register("tipo", { required: "Selecione uma opção" })}>
-                                <option value="">Selecione</option>
-                                <option value="parente">Parente</option>
-                                <option value="cuidador">Cuidador</option>
-                                <option value="paciente">Paciente</option>
-                            </select>
-                            {errors.tipo && <p className="text-red-500 text-sm mt-1">{errors.tipo.message}</p>}
-                        </div>
-                        
-                        <div>
-                            <label htmlFor="titulo">Título do Problema:</label>
-                            <input type="text" id="titulo" {...register("titulo", { required: "O título é obrigatório" })} />
-                            {errors.titulo && <p className="text-red-500 text-sm mt-1">{errors.titulo.message}</p>}
-                        </div>
-                        
                         <div>
                             <label htmlFor="descricao">Descrição do Problema:</label>
                             <textarea id="descricao" rows={5} {...register("descricao", { required: "A descrição é obrigatória" })}></textarea>
                             {errors.descricao && <p className="text-red-500 text-sm mt-1">{errors.descricao.message}</p>}
                         </div>
-                        
-                        <button type="submit">Enviar</button>
+
+                        {apiError && (
+                            <div className="text-red-500 text-sm text-center p-3 rounded-lg bg-red-50">
+                                <strong>Erro ao enviar:</strong> {apiError}
+                            </div>
+                        )}_
+
+                        <button type="submit" disabled={isLoading}>
+                            {isLoading ? "Enviando..." : "Enviar"}
+                        </button>
                     </form>
                 </div>
-
             </div>
         </>
     )
