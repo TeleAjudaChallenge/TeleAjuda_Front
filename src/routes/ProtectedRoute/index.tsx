@@ -1,8 +1,12 @@
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../../App';
 
 export default function ProtectedRoute() {
-  // A lógica de autenticação será adicionada aqui
-  
-  // Por enquanto, apenas renderiza as rotas filhas
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
   return <Outlet />;
 }
