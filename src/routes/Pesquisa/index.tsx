@@ -3,11 +3,23 @@ import { useState } from "react";
 
 const ESCALA = Array.from({ length: 11 }, (_, i) => i); // 0..10
 
+type ApiPesquisaData = {
+    nt_app: number;
+    nt_site: number;
+    nt_suporte: number;
+    paciente?: {
+        cpf_paciente: string;
+    };
+};
+
 type FormValues = {
     notaApp: string;
     notaSite: string;
     notaSuporte: string;
 };
+
+const API_URL = "https://teleajuda.onrender.com";
+const PESQUISA_ENDPOINT = "/pesquisa";
 
 function RatingGroup({ id, legend, register, watch, errors }) {
     const helpId = ${id}-help;
@@ -66,8 +78,38 @@ export default function Pesquisa() {
     const [apiError, setApiError] = useState<string | null>(null);
 
     const onSubmit = async (data: FormValues) => {
-        console.log("Dados do formulário:", data);
-        // Lógica de envio para API virá aqui
+        setOkMsg("");
+        setApiError(null);
+        setSending(true);
+        
+        const apiData: ApiPesquisaData = {
+            nt_app: Number(data.notaApp),
+            nt_site: Number(data.notaSite),
+            nt_suporte: Number(data.notaSuporte),
+        };
+
+        // Lógica de autenticação virá aqui
+
+        try {
+            const response = await fetch(${API_URL}${PESQUISA_ENDPOINT}, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(apiData)
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || "Não foi possível enviar a avaliação.");
+            }
+            
+            setOkMsg("Avaliação enviada com sucesso. Obrigado pelo feedback!");
+            reset();
+
+        } catch (err: any) {
+            setApiError(err.message);
+        } finally {
+            setSending(false);
+        }
     };
 
     return (
