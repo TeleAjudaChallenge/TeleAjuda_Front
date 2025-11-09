@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../App';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { FaTimes, FaRegCommentDots } from 'react-icons/fa';
 
 type Ticket = {
@@ -14,9 +15,12 @@ type Ticket = {
         nm_paciente?: string;
     };
 };
-
+type ReplyFormValues = {
+    resposta: string;
+};
 const API_URL = "https://teleajuda.onrender.com";
 const GET_ALL_TICKETS = "/ticket";
+const RESPOND_TICKET = "/ticket";
 
 export default function DashboardFuncionario() {
     const { user, logout } = useAuth();
@@ -26,6 +30,7 @@ export default function DashboardFuncionario() {
     const [error, setError] = useState<string | null>(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [ticketSelecionado, setTicketSelecionado] = useState<Ticket | null>(null);
+    const { register, handleSubmit, reset } = useForm<ReplyFormValues>();
 
     useEffect(() => {
         if (!user) {
@@ -35,7 +40,7 @@ export default function DashboardFuncionario() {
             navigate('/perfil');
             return;
         }
-        
+
         const fetchTickets = async () => {
             setIsLoading(true);
             try {
@@ -59,11 +64,54 @@ export default function DashboardFuncionario() {
 
     const abrirModal = (ticket: Ticket) => {
         setTicketSelecionado(ticket);
+        reset({ resposta: "" });
         setModalOpen(true);
     };
     const fecharModal = () => {
         setModalOpen(false);
         setTicketSelecionado(null);
+    };
+
+    const onReplySubmit = async (data: ReplyFormValues) => {
+        if (!ticketSelecionado || !user || !user.cpf) {
+            setError("Erro: Ticket ou funcionário não identificado.");
+            setIsLoading(false);
+            return;
+        }
+        
+        setIsLoading(true);
+
+        const apiData = {
+            id_ticket: ticketSelecionado.id_ticket,
+            resposta: data.resposta,
+            funcionario: {
+                cpf_funcionario: user.cpf
+            }
+        };
+
+        try {
+            const response = await fetch(${API_URL}${RESPOND_TICKET}, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(apiData),
+            });
+
+            if (!response.ok) { 
+                const errorText = await response.text();
+                throw new Error(errorText || Erro ${response.status}: Não foi possível enviar a resposta.);
+            }
+
+            setTickets(tickets.map(t => 
+                t.id_ticket === ticketSelecionado.id_ticket 
+                ? { ...t, resposta: data.resposta, status: "FECHADO" } 
+                : t
+            ));
+            fecharModal();
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     if (!user) {
@@ -147,12 +195,13 @@ export default function DashboardFuncionario() {
                             <p><strong>Descrição:</strong> {ticketSelecionado.descricao}</p>
                         </div>
 
-                        <form>
+                        <form onSubmit={handleSubmit(onReplySubmit)}>
                             <label htmlFor="resposta" className="block text-sm font-medium text-gray-700 mb-1">Sua Resposta:</label>
                             <textarea 
                                 id="resposta" 
                                 rows={5}
                                 className="form-default w-full"
+                                {...register("resposta", { required: "A resposta é obrigatória" })}
                             ></textarea>
                             <button 
                                 type="submit" 
