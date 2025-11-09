@@ -37,13 +37,13 @@ export default function VerPesquisas() {
 
         const fetchPesquisas = async () => {
             setIsLoading(true);
-            try {
-                const response = await fetch(${ API_URL }${ GET_ALL_PESQUISAS }, {
+            try{
+                const response = await fetch ('${API_URL}${GET_ALL_PESQUISAS}', {
                     method: 'GET',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {'Contest-Type':'application/jason'},
                 });
                 if (!response.ok) {
-                    throw new Error("Não foi possível carregar os dados da pesquisa.");
+                    throw new Error("Não foi possivel carregar os dados da pesquisa.");
                 }
                 const data: Pesquisa[] = await response.json();
                 setPesquisas(data);
@@ -57,11 +57,10 @@ export default function VerPesquisas() {
                     setAvgSite(totalSite / data.length);
                     setAvgSuporte(totalSuporte / data.length);
                 }
-
             } catch (err: any) {
-                setError(err.message);
+                setError(err.message)
             } finally {
-                setIsLoading(false);
+                setIsLoading(false)
             }
         };
 
