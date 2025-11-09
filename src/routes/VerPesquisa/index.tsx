@@ -21,7 +21,7 @@ export default function VerPesquisas() {
     const [pesquisas, setPesquisas] = useState<Pesquisa[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    
+
     const [avgApp, setAvgApp] = useState(0);
     const [avgSite, setAvgSite] = useState(0);
     const [avgSuporte, setAvgSuporte] = useState(0);
@@ -38,7 +38,7 @@ export default function VerPesquisas() {
         const fetchPesquisas = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(${API_URL}${GET_ALL_PESQUISAS}, {
+                const response = await fetch(${ API_URL }${ GET_ALL_PESQUISAS }, {
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                 });
@@ -52,7 +52,7 @@ export default function VerPesquisas() {
                     const totalApp = data.reduce((sum, item) => sum + item.nt_app, 0);
                     const totalSite = data.reduce((sum, item) => sum + item.nt_site, 0);
                     const totalSuporte = data.reduce((sum, item) => sum + item.nt_suporte, 0);
-                    
+
                     setAvgApp(totalApp / data.length);
                     setAvgSite(totalSite / data.length);
                     setAvgSuporte(totalSuporte / data.length);
@@ -82,10 +82,10 @@ export default function VerPesquisas() {
                     Aqui estão as médias de satisfação dos pacientes.
                 </p>
             </header>
-            
+
             {isLoading && <p className="text-center text-gray-500">Carregando resultados...</p>}
             {error && <div className="text-red-500 text-center p-4 bg-red-50 rounded-lg">{error}</div>}
-            
+
             {!isLoading && !error && (
                 <>
                     <section className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
