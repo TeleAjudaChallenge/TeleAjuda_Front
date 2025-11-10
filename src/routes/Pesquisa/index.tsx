@@ -22,7 +22,7 @@ type FormValues = {
 const API_URL = "https://teleajuda.onrender.com";
 const PESQUISA_ENDPOINT = "/pesquisa";
 
-function RatingGroup({ id, legend, register, watch, errors }) {
+function RatingGroup({ id, legend, register, watch, errors }:{id: string; legend: string; register: any; watch: any; errors: any}) {
   const helpId = `${id}-help`;
   const currentValue = watch(id);
 

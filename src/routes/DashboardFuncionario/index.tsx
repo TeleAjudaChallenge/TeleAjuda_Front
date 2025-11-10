@@ -20,7 +20,7 @@ type ReplyFormValues = {
 };
 const API_URL = "https://teleajuda.onrender.com";
 const GET_ALL_TICKETS = "/ticket";
-const RESPOND_TICKET = "/ticket";
+//const RESPOND_TICKET = "/ticket";
 
 export default function DashboardFuncionario() {
     const { user, logout } = useAuth();
