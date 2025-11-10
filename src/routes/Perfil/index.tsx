@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../App';
 import { useEffect, useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
+import { User } from '../../App';
 
 const API_URL = "https://teleajuda.onrender.com";
 

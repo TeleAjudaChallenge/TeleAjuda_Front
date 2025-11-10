@@ -52,7 +52,7 @@ export default function DashboardFuncionario() {
                     throw new Error("Não foi possível carregar os tickets.");
                 }
                 const data: Ticket[] = await response.json();
-                setTickets(data.sort((a, b) => (a.resposta === null ? -1 : 1)));
+                setTickets(data.sort((a, _b) => (a.resposta === null ? -1 : 1)));
             } catch (err: any) {
                 setError(err.message);
             } finally {

@@ -3,8 +3,9 @@ import Cabecalho from "./components/Cabecalho/Cabecalho.tsx";
 import Rodape from "./components/Rodape/Rodape.tsx";
 import { createContext, useState, useContext, useEffect } from 'react';
 
+
 // --- DEFINIÇÃO DE TIPOS ---
-type User = {
+export type User = {
     id: number;
     nome: string;
     email: string;
