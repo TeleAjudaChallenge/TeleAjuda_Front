@@ -58,7 +58,6 @@ export default function Perfil() {
         mail_paciente: data.email,
         rghc: data.rghc,
         dt_nasc_paciente: data.dataNascimento,
-        senha_paciente: user.senha
     };
 
     try {

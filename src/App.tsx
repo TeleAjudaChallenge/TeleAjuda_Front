@@ -1,7 +1,7 @@
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Cabecalho from "./components/Cabecalho/Cabecalho.tsx";
 import Rodape from "./components/Rodape/Rodape.tsx";
-import { createContext, useState, useContext, ReactNode, useEffect } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 // --- DEFINIÇÃO DE TIPOS ---
 type User = {
