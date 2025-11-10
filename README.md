@@ -1,12 +1,35 @@
 <div align="center">
-  <img src="src/assets/img/LogoTeleAjuda.png" alt="Logo do Projeto TeleAjuda" width="200"/>
+  <img src="public/LogoTeleAjuda.png" alt="Logo do Projeto TeleAjuda" width="200"/>
 
-  <h1 align="center">TeleAjuda IMREA - Challenge FIAP</h1>
+  <h1 align="center">TeleAjuda IMREA - Challenge FIAP (Sprint 4)</h1>
 
   <p align="center">
-    Uma plataforma acessível e intuitiva para reduzir o absenteísmo em teleconsultas, desenvolvida para o Challenge de Front-End Design Engineering da FIAP.
+    Plataforma SPA (Single Page Application) acessível e intuitiva para reduzir o absenteísmo em teleconsultas, com gestão de tickets e autenticação de usuários (Paciente e Funcionário) integrada a uma API Java.
   </p>
 </div>
+
+### 🔗 Links Importantes (Avaliação)
+
+| Link | URL |
+| :--- | :--- |
+| [cite_start]**Deploy (Vercel)** [cite: 87] | `https://tele-ajuda-front.vercel.app` |
+| [cite_start]**Repositório (GitHub)** [cite: 133] | `https://github.com/TeleAjudaChallenge/Front2.git` |
+| [cite_start]**Vídeo (YouTube)** [cite: 134] | `https://youtu.be/k77RvOJk8ng` |
+
+---
+
+### 🚀 Tecnologias Utilizadas
+
+[cite_start]Este projeto foi construído utilizando as seguintes tecnologias, conforme os requisitos da Sprint 04[cite: 5, 11]:
+
+- [cite_start]**React 19** [cite: 5]
+- [cite_start]**Vite** [cite: 5]
+- [cite_start]**TypeScript** [cite: 5]
+- [cite_start]**TailwindCSS** [cite: 32] (Para toda a estilização e responsividade)
+- [cite_start]**React Router DOM** [cite: 17] (Para gerenciamento de rotas da SPA)
+- **React Hook Form** (Para validação de formulários)
+- **React Context API** (Para gerenciamento de estado global de autenticação)
+- [cite_start]**Fetch API** (Para consumo da API REST Java) [cite: 7]
 
 <div align="center">
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
@@ -17,52 +40,44 @@
 
 ---
 
-### 📖 Tabela de Conteúdos
-* [Sobre o Projeto](#-sobre-o-projeto)
-* [Funcionalidades Principais](#-funcionalidades-principais)
-* [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-* [Integrantes da Equipe](#-integrantes-da-equipe)
-* [Como Executar o Projeto](#-como-executar-o-projeto)
-* [Estrutura de Pastas](#-estrutura-de-pastas)
-* [Links Importantes](#-links-importantes)
-
----
-
 ### 🎯 Sobre o Projeto
 
-Este projeto foi desenvolvido como parte do Challenge da FIAP para a disciplina de Front-End Design Engineering. A solução visa apoiar o Instituto de Reabilitação do Hospital das Clínicas (HC-IMREA), com foco em reduzir o absenteísmo em teleconsultas através de uma plataforma acessível, intuitiva e responsiva.
+Este projeto foi desenvolvido como parte do Challenge da FIAP para a disciplina de Front-End Design Engineering. [cite_start]A solução visa apoiar o Instituto de Reabilitação do Hospital das Clínicas (HC-IMREA), com foco em reduzir o absenteísmo em teleconsultas através de uma plataforma acessível, intuitiva e responsiva[cite: 8].
+
+[cite_start]Nesta versão final (Sprint 04), o projeto evoluiu para uma Single Page Application (SPA) completa [cite: 5][cite_start], com autenticação, rotas protegidas e integração total com a API de back-end (`https://teleajuda.onrender.com`)[cite: 7].
 
 ### ✨ Funcionalidades Principais
 
-- **Design Responsivo:** Interface totalmente adaptável para desktops, tablets e celulares.
-- **Navegação por Rotas:** Experiência de usuário fluida em uma Single Page Application (SPA).
-- **Validação de Formulários:** Formulários de `Chamados` e `Pesquisa` com validação em tempo real utilizando `react-hook-form`.
-- **Componente Interativo:** FAQ com animação de acordeão para uma melhor experiência do usuário.
-- **Hooks do React:** Uso de `useState`, `useEffect`, `useNavigate` e `useParams` para atender a todos os requisitos da avaliação.
+A plataforma conta com dois fluxos de usuário principais com autenticação e consumo de API:
+
+**1. Fluxo do Paciente:**
+* **Autenticação:** Cadastro (`POST /paciente`) e Login (`GET /paciente/validar/...`).
+* **Gestão de Perfil:** Visualização e atualização dos próprios dados (`GET /paciente/cpf/...` e `PUT /paciente`).
+* **Suporte:** Abertura de tickets de chamado (`POST /ticket`), vinculados ao seu CPF.
+* **Feedback:** Envio de Pesquisa de Satisfação (`POST /pesquisa`).
+
+**2. Fluxo do Funcionário:**
+* **Autenticação:** Login (`GET /funcionario/validar/...`).
+* **Dashboard de Tickets:** Visualização de todos os tickets abertos pelos pacientes (`GET /ticket`).
+* **Atendimento:** Envio de respostas aos tickets (`PUT /ticket`).
+* **Análise de Dados:** Visualização dos resultados e médias da Pesquisa de Satisfação (`GET /pesquisa`).
+
+**Outras Funcionalidades:**
+* [cite_start]**Páginas Obrigatórias:** Home, Sobre, FAQ, Contato e Integrantes[cite: 155].
+* [cite_start]**Rotas Dinâmicas:** Página de contato com rota dinâmica (`/contato/:filialId`)[cite: 41, 54].
+* **Rotas Protegidas:** O usuário não consegue acessar as páginas do sistema (como `/perfil` ou `/chamados`) sem estar logado, sendo redirecionado para `/login`.
+* **Validação de Formulários:** Todos os formulários (Login, Cadastro, Chamados, Pesquisa, Perfil) usam `react-hook-form` para validação em tempo real.
+* [cite_start]**Design Responsivo:** Interface totalmente adaptável para desktops, tablets e celulares usando TailwindCSS[cite: 8, 70].
 
 ---
 
-### 🚀 Tecnologias Utilizadas
+### [cite_start]👨‍💻 Integrantes da Equipe [cite: 129]
 
-[cite_start]Este projeto foi construído utilizando as seguintes tecnologias, conforme os requisitos da Sprint 03[cite: 5, 10]:
-
-- **React:** Biblioteca para a construção da interface de usuário.
-- **Vite:** Ferramenta de build para um desenvolvimento rápido e moderno.
-- **TypeScript:** Superset do JavaScript que adiciona tipagem estática ao código.
-- [cite_start]**Tailwind CSS:** Framework de CSS utility-first para estilização rápida e responsiva[cite: 39].
-- **React Router DOM:** Para gerenciamento de rotas em uma Single Page Application (SPA).
-- [cite_start]**React Hook Form:** Para validação de formulários, um requisito obrigatório do projeto[cite: 28].
-- **React Icons:** Para a utilização de ícones na interface.
-
----
-
-### 👨‍💻 Integrantes da Equipe
-
-| Nome Completo                     | RM     | Turma   |
-| --------------------------------- | ------ | ------- |
-| Matheus Borges Sansão             | 562896 | 1TDSPO  |
-| Julia Correa e Souza Altino       | 564870 | 1TDSPO  |
-| Nicholas Camillo Canadas de Paulo | 561262 | 1TDSPO  |
+| Nome Completo | RM | Turma |
+| :--- | :--- | :--- |
+| Matheus Borges Sansão | 562896 | 1TDSPO |
+| Julia Correa e Souza Altino | 564870 | 1TDSPO |
+| Nicholas Camillo Canadas de Paulo | 561262 | 1TDSPO |
 
 ---
 
@@ -72,11 +87,11 @@ Para rodar este projeto localmente, siga os passos abaixo:
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/TeleAjudaChallenge/Front2.git
+    git clone [https://github.com/TeleAjudaChallenge/Front2.git](https://github.com/TeleAjudaChallenge/Front2.git)
     ```
 2.  **Acesse a pasta do projeto:**
     ```bash
-    cd teleajudachallenge/front2
+    cd [pasta-do-projeto]
     ```
 3.  **Instale as dependências:**
     ```bash
@@ -86,26 +101,20 @@ Para rodar este projeto localmente, siga os passos abaixo:
     ```bash
     npm run dev
     ```
-    A aplicação estará disponível em um endereço como `http://localhost:5173`.
+    A aplicação estará disponível em `http://localhost:5173`.
 
 ---
 
-### 📂 Estrutura de Pastas
+### [cite_start]📂 Estrutura de Pastas [cite: 132]
 
 O projeto segue uma estrutura de pastas organizada para facilitar a manutenção e a escalabilidade:
-/src
-|-- /assets         # Imagens, ícones e outros arquivos estáticos
-|-- /components     # Componentes reutilizáveis (Header, Footer, Menu)
-|-- /data           # Mock de dados (ex: lista de filiais)
-|-- /routes         # Componentes que representam as páginas da aplicação
-|-- /types          # Definições de tipos do TypeScript
-|-- App.tsx         # Componente principal que define o layout global
-|-- main.tsx        # Ponto de entrada da aplicação e configuração das rotas
-|-- global.css      # Estilos globais e configuração do Tailwind
 
----
-
-### 🔗 Links Importantes
-
-- [cite_start]**Repositório no GitHub:** `https://github.com/TeleAjudaChallenge/Front2.git`
-- [cite_start]**Vídeo de Apresentação (YouTube):** `https://youtu.be/eh8yt8uiNm0`
+/src 
+|-- /assets # Imagens, ícones e outros arquivos estáticos 
+|-- /components # Componentes reutilizáveis (Header, Footer, Menu) 
+|-- /data # Mock de dados (ex: lista de filiais) 
+|-- /routes # Componentes que representam as páginas (telas) da aplicação 
+|-- /types # Definições de tipos do TypeScript 
+|-- App.tsx # Componente principal (Layout, Contexto de Auth) 
+|-- main.tsx # Ponto de entrada (Configuração de Rotas) 
+|-- global.css # Estilos globais e configuração do Tailwind
