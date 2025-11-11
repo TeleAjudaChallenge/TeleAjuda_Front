@@ -165,7 +165,8 @@ export default function Pesquisa() {
             register={register}
             watch={watch}
             errors={errors}
-          }
+          /> 
+          {/* O '}' extra foi REMOVIDO DAQUI */}
 
           {okMsg && (
             <div className="rounded-xl border border-green-200 bg-green-50 text-green-800 px-4 py-3">
