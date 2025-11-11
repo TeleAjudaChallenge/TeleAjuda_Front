@@ -19,8 +19,6 @@ type FormValues = {
   notaSuporte: string;
 };
 
-// APAGADO API_URL e PESQUISA_ENDPOINT DAQUI
-
 // CORREÇÃO: Adicionado tipos para os parâmetros
 function RatingGroup({ id, legend, register, watch, errors }: { id: string, legend: string, register: any, watch: any, errors: any }) {
   const helpId = `${id}-help`;
@@ -85,7 +83,6 @@ export default function Pesquisa() {
     setApiError(null);
     setSending(true);
 
-    // CORREÇÃO: Lê as variáveis do .env
     const API_URL = import.meta.env.VITE_API_URL;
     const API_KEY = import.meta.env.VITE_API_KEY;
     const PESQUISA_ENDPOINT = "/pesquisa";
@@ -109,7 +106,7 @@ export default function Pesquisa() {
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
-            'X-API-Key': API_KEY // ADICIONADO
+            'X-API-Key': API_KEY 
         },
         body: JSON.stringify(apiData)
       });
@@ -122,7 +119,7 @@ export default function Pesquisa() {
       setOkMsg("Avaliação enviada com sucesso. Obrigado pelo feedback!");
       reset();
 
-    } catch (err: any) {
+    } catch (err: any) { // <-- AQUI ESTAVA O ERRO (troquei '()' por '{}')
       setApiError(err.message);
     } finally {
       setSending(false);
