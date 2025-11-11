@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../App';
 import { useEffect, useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
+// CORREÇÃO: 'import type'
 import type { User } from '../../App';
 
-const API_URL = "https://teleajuda.onrender.com";
+// APAGADO API_URL DAQUI
 
 type FormValues = {
   nome: string;
@@ -47,6 +48,10 @@ export default function Perfil() {
     setIsLoading(true);
     setApiMessage(null);
 
+    // CORREÇÃO: Lê as variáveis do .env
+    const API_URL = import.meta.env.VITE_API_URL;
+    const API_KEY = import.meta.env.VITE_API_KEY;
+
     if (!user) {
         setApiMessage({ type: "error", text: "Você não está autenticado." });
         return;
@@ -59,6 +64,7 @@ export default function Perfil() {
         mail_paciente: data.email,
         rghc: data.rghc,
         dt_nasc_paciente: data.dataNascimento,
+        // CORREÇÃO: Linha da senha removida
     };
 
     try {
@@ -66,6 +72,7 @@ export default function Perfil() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'X-API-Key': API_KEY // ADICIONADO
         },
         body: JSON.stringify(apiData),
       });

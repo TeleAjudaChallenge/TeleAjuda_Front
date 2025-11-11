@@ -66,17 +66,28 @@ export default function App() {
     }, []);
 
     const login = async (cpf: string, senha: string) => {
-        const API_URL = "https://teleajuda.onrender.com";
+        // CORREÇÃO: Lê as variáveis do .env
+        const API_URL = import.meta.env.VITE_API_URL;
+        const API_KEY = import.meta.env.VITE_API_KEY;
 
         try {
             // --- TENTATIVA 1: LOGAR COMO PACIENTE ---
             const validacaoPaciente = await fetch(`${API_URL}/paciente/validar/${cpf}/${senha}`, {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-API-Key': API_KEY // ADICIONADO
+                },
             });
 
             if (validacaoPaciente.ok) {
-                const dadosResponse = await fetch(`${API_URL}/paciente/cpf/${cpf}`, { method: 'GET', headers: { 'Content-Type': 'application/json' }});
+                const dadosResponse = await fetch(`${API_URL}/paciente/cpf/${cpf}`, { 
+                    method: 'GET', 
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-API-Key': API_KEY // ADICIONADO
+                    }
+                });
                 if (!dadosResponse.ok) throw new Error('CPF validado (Paciente), mas não foi possível buscar os dados.');
                
                 const dadosApi = await dadosResponse.json();
@@ -98,11 +109,20 @@ export default function App() {
             // --- TENTATIVA 2: LOGAR COMO FUNCIONÁRIO ---
             const validacaoFuncionario = await fetch(`${API_URL}/funcionario/validar/${cpf}/${senha}`, {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-API-Key': API_KEY // ADICIONADO
+                },
             });
 
             if (validacaoFuncionario.ok) {
-                const dadosResponse = await fetch(`${API_URL}/funcionario/cpf/${cpf}`, { method: 'GET', headers: { 'Content-Type': 'application/json' }});
+                const dadosResponse = await fetch(`${API_URL}/funcionario/cpf/${cpf}`, { 
+                    method: 'GET', 
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-API-Key': API_KEY // ADICIONADO
+                    }
+                });
                 if (!dadosResponse.ok) throw new Error('CPF validado (Funcionário), mas não foi possível buscar os dados.');
                
                 const dadosApi = await dadosResponse.json();

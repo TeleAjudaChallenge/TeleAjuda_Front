@@ -12,8 +12,7 @@ type Pesquisa = {
     };
 };
 
-const API_URL = "https://teleajuda.onrender.com";
-const GET_ALL_PESQUISAS = "/pesquisa";
+// APAGADO API_URL e GET_ALL_PESQUISAS DAQUI
 
 export default function VerPesquisas() {
     const { user, logout } = useAuth();
@@ -37,10 +36,19 @@ export default function VerPesquisas() {
 
         const fetchPesquisas = async () => {
             setIsLoading(true);
+
+            // CORREÇÃO: Lê as variáveis do .env
+            const API_URL = import.meta.env.VITE_API_URL;
+            const API_KEY = import.meta.env.VITE_API_KEY;
+            const GET_ALL_PESQUISAS = "/pesquisa";
+
             try{
                 const response = await fetch (`${API_URL}${GET_ALL_PESQUISAS}`, {
                     method: 'GET',
-                    headers: {'Content-Type':'application/json'},
+                    headers: {
+                        'Content-Type':'application/json',
+                        'X-API-Key': API_KEY // ADICIONADO
+                    },
                 });
                 if (!response.ok) {
                     throw new Error("Não foi possivel carregar os dados da pesquisa.");

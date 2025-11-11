@@ -18,9 +18,8 @@ type Ticket = {
 type ReplyFormValues = {
     resposta: string;
 };
-const API_URL = "https://teleajuda.onrender.com";
-const GET_ALL_TICKETS = "/ticket";
-//const RESPOND_TICKET = "/ticket";
+
+// APAGADO API_URL, GET_ALL_TICKETS, RESPOND_TICKET DAQUI
 
 export default function DashboardFuncionario() {
     const { user, logout } = useAuth();
@@ -42,17 +41,25 @@ export default function DashboardFuncionario() {
         }
 
         const fetchTickets = async () => {
+            // CORREÇÃO: Lê as variáveis do .env
+            const API_URL = import.meta.env.VITE_API_URL;
+            const API_KEY = import.meta.env.VITE_API_KEY;
+            const GET_ALL_TICKETS = "/ticket";
+            
             setIsLoading(true);
             try {
                 const response = await fetch(`${API_URL}${GET_ALL_TICKETS}`, {
                     method: 'GET',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-API-Key': API_KEY // ADICIONADO
+                    },
                 });
                 if (!response.ok) {
                     throw new Error("Não foi possível carregar os tickets.");
                 }
                 const data: Ticket[] = await response.json();
-                setTickets(data.sort((a, _b) => (a.resposta === null ? -1 : 1)));
+                setTickets(data.sort((a, _b) => (a.resposta === null ? -1 : 1))); // CORRIGIDO 'b' para '_b'
             } catch (err: any) {
                 setError(err.message);
             } finally {
@@ -80,6 +87,11 @@ export default function DashboardFuncionario() {
         
         setIsLoading(true);
 
+        // CORREÇÃO: Lê as variáveis do .env
+        const API_URL = import.meta.env.VITE_API_URL;
+        const API_KEY = import.meta.env.VITE_API_KEY;
+        // const RESPOND_TICKET = "/ticket"; // (Bypass ainda ativo)
+        
         const apiData = {
             id_ticket: ticketSelecionado.id_ticket,
             resposta: data.resposta,
@@ -90,6 +102,21 @@ export default function DashboardFuncionario() {
 
         console.log("BYPASS: Enviando resposta para API (simulado):", apiData);
         await new Promise(resolve => setTimeout(resolve, 700));
+
+        // ATENÇÃO: Se você for descomentar o fetch (PUT) original,
+        // lembre-se de adicionar o 'X-API-Key': API_KEY nos headers!
+        /*
+        try {
+            const response = await fetch(`${API_URL}${RESPOND_TICKET}`, {
+                method: 'PUT',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-API-Key': API_KEY // ADICIONADO
+                },
+                body: JSON.stringify(apiData),
+            });
+        ...
+        */
 
         setTickets(tickets.map(t => 
             t.id_ticket === ticketSelecionado.id_ticket 

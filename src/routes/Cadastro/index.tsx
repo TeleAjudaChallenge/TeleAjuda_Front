@@ -3,8 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { FaUserPlus, FaEnvelope, FaLock, FaIdCard, FaPhone, FaRegAddressCard, FaCalendarAlt, FaUserMd } from 'react-icons/fa';
 
-const API_URL = "https://teleajuda.onrender.com";
-
 const formatarCPF = (value: string) => {
   return value
     .replace(/\D/g, '')
@@ -40,9 +38,14 @@ export default function Cadastro() {
     setValue("cpf", cpfDigitado, { shouldValidate: true });
   };
 
+
   const onSubmit = async (data: FormValues) => {
     setIsLoading(true);
     setApiError(null);
+
+    // CORREÇÃO: Lê as variáveis do .env
+    const API_URL = import.meta.env.VITE_API_URL;
+    const API_KEY = import.meta.env.VITE_API_KEY;
 
     let endpoint = "";
     let apiData = {};
@@ -77,7 +80,10 @@ export default function Cadastro() {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json',
+            'X-API-Key': API_KEY // ADICIONADO
+        },
         body: JSON.stringify(apiData),
       });
 

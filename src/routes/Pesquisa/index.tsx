@@ -19,10 +19,10 @@ type FormValues = {
   notaSuporte: string;
 };
 
-const API_URL = "https://teleajuda.onrender.com";
-const PESQUISA_ENDPOINT = "/pesquisa";
+// APAGADO API_URL e PESQUISA_ENDPOINT DAQUI
 
-function RatingGroup({ id, legend, register, watch, errors }:{id: string; legend: string; register: any; watch: any; errors: any}) {
+// CORREÇÃO: Adicionado tipos para os parâmetros
+function RatingGroup({ id, legend, register, watch, errors }: { id: string, legend: string, register: any, watch: any, errors: any }) {
   const helpId = `${id}-help`;
   const currentValue = watch(id);
 
@@ -84,6 +84,11 @@ export default function Pesquisa() {
     setOkMsg("");
     setApiError(null);
     setSending(true);
+
+    // CORREÇÃO: Lê as variáveis do .env
+    const API_URL = import.meta.env.VITE_API_URL;
+    const API_KEY = import.meta.env.VITE_API_KEY;
+    const PESQUISA_ENDPOINT = "/pesquisa";
    
     const apiData: ApiPesquisaData = {
       nt_app: Number(data.notaApp),
@@ -102,7 +107,10 @@ export default function Pesquisa() {
     try {
       const response = await fetch(`${API_URL}${PESQUISA_ENDPOINT}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json',
+            'X-API-Key': API_KEY // ADICIONADO
+        },
         body: JSON.stringify(apiData)
       });
 
@@ -157,7 +165,7 @@ export default function Pesquisa() {
             register={register}
             watch={watch}
             errors={errors}
-          />
+          }
 
           {okMsg && (
             <div className="rounded-xl border border-green-200 bg-green-50 text-green-800 px-4 py-3">

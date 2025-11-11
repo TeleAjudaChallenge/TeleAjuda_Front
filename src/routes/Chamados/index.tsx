@@ -9,8 +9,9 @@ type FormValues = {
     descricao: string;
 };
 
-const API_URL = "https://teleajuda.onrender.com";
-const TICKET_ENDPOINT = "/ticket";
+// CORREÇÃO: Remova estas linhas
+// const API_URL = "https://teleajuda.onrender.com";
+// const TICKET_ENDPOINT = "/ticket";
 
 export default function Chamados() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>();
@@ -23,6 +24,11 @@ export default function Chamados() {
     const onSubmit = async (data: FormValues) => {
         setIsLoading(true);
         setApiError(null);
+
+        // CORREÇÃO: Lê as variáveis do .env
+        const API_URL = import.meta.env.VITE_API_URL;
+        const API_KEY = import.meta.env.VITE_API_KEY;
+        const TICKET_ENDPOINT = "/ticket";
 
         if (!user || !user.cpf) {
             setApiError("Você precisa estar logado para abrir um chamado.");
@@ -45,6 +51,7 @@ export default function Chamados() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-API-Key': API_KEY // ADICIONADO
                 },
                 body: JSON.stringify(apiData)
             });
@@ -65,6 +72,7 @@ export default function Chamados() {
             setIsLoading(false);
         }
     };
+
 
     return (
         <>
