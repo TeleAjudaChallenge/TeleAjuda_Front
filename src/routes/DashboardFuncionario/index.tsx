@@ -90,7 +90,7 @@ export default function DashboardFuncionario() {
         // CORREÇÃO: Lê as variáveis do .env
         const API_URL = import.meta.env.VITE_API_URL;
         const API_KEY = import.meta.env.VITE_API_KEY;
-        // const RESPOND_TICKET = "/ticket"; // (Bypass ainda ativo)
+        const RESPOND_TICKET = "/ticket"; // URL do endpoint para responder tickets
         
         const apiData = {
             id_ticket: ticketSelecionado.id_ticket,
@@ -100,31 +100,38 @@ export default function DashboardFuncionario() {
             }
         };
 
-        console.log("BYPASS: Enviando resposta para API (simulado):", apiData);
-        await new Promise(resolve => setTimeout(resolve, 700));
+        // --- BYPASS COMENTADO. O CÓDIGO ABAIXO USA A API REAL ---
+        // console.log("BYPASS: Enviando resposta para API (simulado):", apiData);
+        // await new Promise(resolve => setTimeout(resolve, 700));
 
-        // ATENÇÃO: Se você for descomentar o fetch (PUT) original,
-        // lembre-se de adicionar o 'X-API-Key': API_KEY nos headers!
-        /*
         try {
             const response = await fetch(`${API_URL}${RESPOND_TICKET}`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'X-API-Key': API_KEY // ADICIONADO
+                    'X-API-Key': API_KEY // AGORA USADO!
                 },
                 body: JSON.stringify(apiData),
             });
-        ...
-        */
 
-        setTickets(tickets.map(t => 
-            t.id_ticket === ticketSelecionado.id_ticket 
-            ? { ...t, resposta: data.resposta, status: "FECHADO" } 
-            : t
-        ));
-        fecharModal();
-        setIsLoading(false);
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || "Não foi possível enviar a resposta.");
+            }
+        
+            // Atualiza o ticket no estado local
+            setTickets(tickets.map(t => 
+                t.id_ticket === ticketSelecionado.id_ticket 
+                ? { ...t, resposta: data.resposta, status: "RESPONDIDO" } 
+                : t
+            ));
+
+        } catch (err: any) {
+            setError(err.message || "Erro de conexão com a API.");
+        } finally {
+            fecharModal();
+            setIsLoading(false);
+        }
     };
     
     if (!user) {
