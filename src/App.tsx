@@ -4,7 +4,6 @@ import Rodape from "./components/Rodape/Rodape.tsx";
 import { createContext, useState, useContext, useEffect } from 'react';
 
 
-// --- DEFINIÇÃO DE TIPOS ---
 export type User = {
     id: number;
     nome: string;
@@ -66,17 +65,20 @@ export default function App() {
     }, []);
 
     const login = async (cpf: string, senha: string) => {
-        // CORREÇÃO: Lê as variáveis do .env
         const API_URL = import.meta.env.VITE_API_URL;
         const API_KEY = import.meta.env.VITE_API_KEY;
+        
+        console.log(cpf, senha);
 
         try {
-            // --- TENTATIVA 1: LOGAR COMO PACIENTE ---
             const validacaoPaciente = await fetch(`${API_URL}/paciente/validar/${cpf}/${senha}`, {
+                
+                
+
                 method: 'GET',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'X-API-Key': API_KEY // ADICIONADO
+                    'X-API-Key': API_KEY
                 },
             });
 
@@ -85,7 +87,7 @@ export default function App() {
                     method: 'GET', 
                     headers: { 
                         'Content-Type': 'application/json',
-                        'X-API-Key': API_KEY // ADICIONADO
+                        'X-API-Key': API_KEY
                     }
                 });
                 if (!dadosResponse.ok) throw new Error('CPF validado (Paciente), mas não foi possível buscar os dados.');
@@ -106,12 +108,11 @@ export default function App() {
                 return;
             }
 
-            // --- TENTATIVA 2: LOGAR COMO FUNCIONÁRIO ---
             const validacaoFuncionario = await fetch(`${API_URL}/funcionario/validar/${cpf}/${senha}`, {
                 method: 'GET',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'X-API-Key': API_KEY // ADICIONADO
+                    'X-API-Key': API_KEY
                 },
             });
 
@@ -120,7 +121,7 @@ export default function App() {
                     method: 'GET', 
                     headers: { 
                         'Content-Type': 'application/json',
-                        'X-API-Key': API_KEY // ADICIONADO
+                        'X-API-Key': API_KEY
                     }
                 });
                 if (!dadosResponse.ok) throw new Error('CPF validado (Funcionário), mas não foi possível buscar os dados.');
