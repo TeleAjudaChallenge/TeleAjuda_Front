@@ -1,93 +1,108 @@
-import { FaLaptopMedical, FaLightbulb, FaHeartbeat, FaRocket, FaTasks, FaUserCheck, FaUniversalAccess, FaChartLine } from 'react-icons/fa';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Zap, GraduationCap, Globe, ShieldCheck, ArrowRight } from 'lucide-react';
 
-export default function Sobre() {
+const Sobre: React.FC = () => {
   return (
-    <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <header className="max-w-4xl mx-auto text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight" style={{ color: 'var(--color-primary)' }}>
-          Sobre o TeleAjuda
-        </h1>
-        <p className="text-gray-700 mt-4 text-lg leading-relaxed">
-          Uma plataforma simples, acessível e integrada ao Portal do Paciente HC, criada para reduzir faltas em
-          teleconsultas, promover acessibilidade digital e oferecer atendimento mais humano.
-        </p>
-      </header>
+    <div className="bg-black text-white p-4 sm:p-10 md:p-16">
+      <div className="max-w-4xl mx-auto py-12">
 
-      <section className="max-w-5xl mx-auto space-y-6 mb-16">
-        <h2 className="text-3xl font-bold text-center">O desafio atual</h2>
-        <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-            <p className="text-gray-800">
-              Idosos e pessoas com pouca experiência digital têm dificuldade em usar plataformas de saúde.
-            </p>
-          </li>
-          <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-            <p className="text-gray-800">Isso gera insegurança e frustração.</p>
-          </li>
-          <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-            <p className="text-gray-800">
-              Resultado: faltas em consultas online e menor eficácia no tratamento.
-            </p>
-          </li>
-        </ul>
-      </section>
-
-      <section className="max-w-5xl mx-auto space-y-6 mb-16">
-        <h2 className="text-3xl font-bold text-center">
-          Nossa resposta: <span style={{ color: 'var(--color-primary)' }}>TeleAjuda</span>
-        </h2>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm text-center">
-            <FaLaptopMedical className="mx-auto mb-3" size={32} style={{ color: 'var(--color-button)' }} />
-            <h3 className="font-semibold text-lg">Assistente Virtual</h3>
-            <p className="text-gray-600 mt-1">Responde dúvidas e orienta o paciente de forma imediata.</p>
-          </div>
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm text-center">
-            <FaTasks className="mx-auto mb-3" size={32} style={{ color: 'var(--color-button)' }} />
-            <h3 className="font-semibold text-lg">Sistema de Tickets</h3>
-            <p className="text-gray-600 mt-1">Permite abrir chamados e receber suporte humano.</p>
-          </div>
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm text-center">
-            <FaUserCheck className="mx-auto mb-3" size={32} style={{ color: 'var(--color-button)' }} />
-            <h3 className="font-semibold text-lg">Pesquisa de Satisfação</h3>
-            <p className="text-gray-600 mt-1">Coleta feedback para buscar melhorias contínuas.</p>
-          </div>
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm text-center">
-            <FaLightbulb className="mx-auto mb-3" size={32} style={{ color: 'var(--color-button)' }} />
-            <h3 className="font-semibold text-lg">Lembretes Automáticos</h3>
-            <p className="text-gray-600 mt-1">Notificações de datas e horários para reduzir faltas.</p>
-          </div>
+        {/* Título Principal */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-extrabold text-white mb-4">
+            Sobre o Gig-Trust: Propriedade e Estabilidade de Dados
+          </h1>
+          <p className="text-xl text-gray-400">
+            A solução que transforma a renda volátil da Gig Economy em confiança e oportunidade de requalificação.
+          </p>
         </div>
-      </section>
 
-      <section className="max-w-5xl mx-auto space-y-6">
-        <h2 className="text-3xl font-bold text-center">Por que o TeleAjuda faz diferença?</h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center gap-4">
-            <FaChartLine size={24} className="text-[var(--color-primary)]" />
-            <p className="text-gray-800 text-lg">Reduz faltas em consultas</p>
-          </li>
-          <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center gap-4">
-            <FaUniversalAccess size={24} className="text-[var(--color-primary)]" />
-            <p className="text-gray-800 text-lg">Promove acessibilidade digital</p>
-          </li>
-          <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center gap-4">
-            <FaHeartbeat size={24} className="text-[var(--color-primary)]" />
-            <p className="text-gray-800 text-lg">Atendimento humanizado e acolhedor</p>
-          </li>
-          <li className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center gap-4">
-            <FaRocket size={24} className="text-[var(--color-primary)]" />
-            <p className="text-gray-800 text-lg">Aumenta a eficiência do sistema de saúde</p>
-          </li>
-        </ul>
-      </section>
+        {/* O Desafio da Estabilidade de Renda */}
+        <section className="mb-12 p-6 bg-gray-900 rounded-xl shadow-xl border border-gray-800">
+          <h2 className="text-3xl font-bold text-red-500 mb-4 flex items-center space-x-3">
+            <Zap size={28} />
+            <span>O Problema: Fragilidade na Gig Economy</span>
+          </h2>
+          <p className="text-lg text-gray-300 mb-4">
+            Milhões de trabalhadores em plataformas (motoristas, entregadores, freelancers) enfrentam um dilema: a ausência de um holerite. A renda, embora real, é volátil e dispersa em múltiplas fontes, tornando quase impossível comprovar estabilidade financeira para acessar crédito, moradia ou financiamentos, o que agrava a desigualdade social.
+          </p>
+        </section>
 
-      <section className="max-w-4xl mx-auto text-center mt-16 border-t pt-10">
-        <p className="text-gray-700 text-xl leading-relaxed italic">
-          O TeleAjuda reforça a inclusão, o acolhimento e a eficiência nos atendimentos — conectando tecnologia ao cuidado.
-        </p>
-      </section>
-    </main>
+        {/* Nosso Conceito: O Passaporte de Carreira */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold text-blue-400 mb-4 flex items-center space-x-3">
+            <Globe size={28} />
+            <span>O Conceito: Devolvendo o Controle ao Trabalhador</span>
+          </h2>
+          <p className="text-lg text-gray-300 mb-4">
+            O Gig-Trust utiliza Inteligência Artificial para agregar todos os dados de performance do trabalhador (histórico de ganhos, avaliações, tempo de atividade) em um *Passaporte de Carreira* unificado. O foco é devolver ao trabalhador a posse e o controle sobre seus dados. Geramos duas métricas principais:
+          </p>
+          <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
+            <li><span className="font-semibold text-white">Score de Estabilidade de Renda:</span> Número confiável, gerado por Regressão, que bancos podem usar.</li>
+            <li><span className="font-semibold text-white">Mapa de Competências:</span> Identifica habilidades invisíveis (logística, atendimento) para direcionar o Reskilling.</li>
+          </ul>
+        </section>
+
+        {/* Integridade: O Papel da Avaliação Externa */}
+        <section className="mb-12 p-6 bg-gray-900 rounded-xl shadow-xl border border-gray-800">
+          <h2 className="text-3xl font-bold text-yellow-400 mb-4 flex items-center space-x-3">
+            <ShieldCheck size={28} />
+            <span>Integridade: O Papel do Avaliador e da IA</span>
+          </h2>
+          <p className="text-lg text-gray-300 mb-4">
+            A confiabilidade da plataforma é sustentada pela rastreabilidade e pela IA. O sistema permite que qualquer usuário logado (gestor, cliente ou outro trabalhador) avalie a performance. Esta avaliação externa é essencial para validar a experiência, e o sistema registra o CPF do avaliador para garantir a integridade dos dados, mantendo o Passaporte sempre atualizado e crível.
+          </p>
+        </section>
+
+        {/* Reskilling e Oportunidades */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold text-green-400 mb-4 flex items-center space-x-3">
+            <GraduationCap size={28} />
+            <span>Reskilling e Oportunidades de Carreira</span>
+          </h2>
+          <p className="text-lg text-gray-300">
+            A requalificação (Reskilling) é uma exigência do futuro do trabalho. Usando o *Mapa de Competências*, o Gig-Trust sugere cursos e trilhas de aprendizado que aproveitam as habilidades já adquiridas pelo trabalhador na prática. Transformamos a experiência de 'gigs' em um plano de carreira tangível.
+          </p>
+        </section>
+
+
+        {/* Simulação de Busca Rápida */}
+        <div className="pt-8 border-t border-gray-800 mt-12 bg-gray-800 p-6 rounded-lg shadow-inner">
+          <h2 className="text-3xl font-bold mb-4">
+            Consultar Score Rápido (Simulação)
+          </h2>
+          <p className="text-lg text-gray-400 mb-5">
+            Esta é uma funcionalidade pública (não exige login) para demonstrar a busca rápida do Score, crucial para parceiros (bancos/imobiliárias). Insira um ID (CPF) para visualizar um Score mockado.
+          </p>
+          <form className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+            <input
+              type="text"
+              placeholder="Digite o CPF (ID Gig-Trust) do usuário"
+              className="flex-grow px-4 py-3 bg-gray-700 rounded-lg border border-gray-600 text-white placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500"
+              maxLength={14}
+            />
+            <button
+              type="submit"
+              className="flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition"
+            >
+              Buscar Score
+            </button>
+          </form>
+        </div>
+
+        <div className="text-center pt-8 border-t border-gray-800 mt-12">
+          <h2 className="text-2xl font-bold text-white mb-3">Pronto para assumir o controle da sua carreira?</h2>
+          <Link
+            to="/signup"
+            className="inline-flex items-center space-x-2 px-8 py-3 text-xl font-bold bg-green-500 text-black rounded-full shadow-lg hover:shadow-2xl hover:bg-green-600 transition duration-300 transform hover:scale-105 mt-4"
+          >
+            Criar Meu Passaporte Agora <ArrowRight size={22} />
+          </Link>
+        </div>
+
+      </div>
+    </div>
   );
 }
+
+export default Sobre;
